@@ -1,0 +1,335 @@
+DEBUG    : 08-26 01:48:04 : [139731798214368] [t.py:14:<module>] this is debug
+NOTICE   : 08-26 01:48:04 : [139731798214368] [t.py:15:<module>] this is notice
+TRACE    : 08-26 01:48:04 : [139731798214368] [t.py:16:<module>] this is trace
+WARNING  : 08-26 01:48:04 : [139731798214368] [t.py:17:<module>] this is warning
+WARNING  : 08-26 01:48:04 : [139731798214368] [t.py:18:<module>] this is fatal
+DEBUG    : 08-26 02:00:21 : [140052005820128] [t.py:15:<module>] this is debug
+NOTICE   : 08-26 02:00:21 : [140052005820128] [t.py:16:<module>] this is notice
+TRACE    : 08-26 02:00:21 : [140052005820128] [t.py:17:<module>] this is trace
+WARNING  : 08-26 02:00:21 : [140052005820128] [t.py:18:<module>] this is warning
+WARNING  : 08-26 02:00:21 : [140052005820128] [t.py:19:<module>] this is fatal
+DEBUG    : 08-26 02:02:01 : [139912688953056] [t.py:17:<module>] this is debug
+NOTICE   : 08-26 02:02:01 : [139912688953056] [t.py:18:<module>] this is notice
+TRACE    : 08-26 02:02:01 : [139912688953056] [t.py:19:<module>] this is trace
+WARNING  : 08-26 02:02:01 : [139912688953056] [t.py:20:<module>] this is warning
+WARNING  : 08-26 02:02:01 : [139912688953056] [t.py:21:<module>] this is fatal
+NOTICE   : 08-26 11:24:45 : [1097390432] [spider.py:19:run] thread: 0 start
+NOTICE   : 08-26 11:24:45 : [1113221472] [spider.py:19:run] thread: 1 start
+NOTICE   : 08-26 11:24:45 : [1123711328] [spider.py:19:run] thread: 2 start
+NOTICE   : 08-26 11:24:45 : [1134201184] [spider.py:19:run] thread: 3 start
+NOTICE   : 08-26 11:24:45 : [1144691040] [spider.py:19:run] thread: 4 start
+NOTICE   : 08-26 11:24:45 : [1155180896] [spider.py:19:run] thread: 5 start
+NOTICE   : 08-26 11:24:45 : [1165670752] [spider.py:19:run] thread: 6 start
+NOTICE   : 08-26 11:24:45 : [1176160608] [spider.py:19:run] thread: 7 start
+NOTICE   : 08-26 11:24:45 : [1186650464] [spider.py:19:run] thread: 8 start
+NOTICE   : 08-26 11:24:45 : [1197140320] [spider.py:19:run] thread: 9 start
+NOTICE   : 08-26 11:24:45 : [1207630176] [spider.py:19:run] thread: 10 start
+NOTICE   : 08-26 11:24:45 : [1218120032] [spider.py:19:run] thread: 11 start
+NOTICE   : 08-26 11:24:45 : [1228609888] [spider.py:19:run] thread: 12 start
+NOTICE   : 08-26 11:24:45 : [1239099744] [spider.py:19:run] thread: 13 start
+NOTICE   : 08-26 11:24:45 : [1249589600] [spider.py:19:run] thread: 14 start
+NOTICE   : 08-26 11:24:45 : [1260079456] [spider.py:19:run] thread: 15 start
+NOTICE   : 08-26 11:24:45 : [1270569312] [spider.py:19:run] thread: 16 start
+NOTICE   : 08-26 11:24:45 : [1281059168] [spider.py:19:run] thread: 17 start
+NOTICE   : 08-26 11:24:45 : [1084918112] [spider.py:19:run] thread: 18 start
+NOTICE   : 08-26 11:24:45 : [1291549024] [spider.py:19:run] thread: 19 start
+NOTICE   : 08-26 11:24:50 : [1097390432] [spider.py:39:run] thread: 0 finished use[5.000235]
+NOTICE   : 08-26 11:24:50 : [1113221472] [spider.py:39:run] thread: 1 finished use[5.000398]
+NOTICE   : 08-26 11:24:50 : [1144691040] [spider.py:39:run] thread: 4 finished use[5.000135]
+NOTICE   : 08-26 11:24:50 : [1134201184] [spider.py:39:run] thread: 3 finished use[5.000692]
+NOTICE   : 08-26 11:24:50 : [1123711328] [spider.py:39:run] thread: 2 finished use[5.000824]
+NOTICE   : 08-26 11:24:50 : [1155180896] [spider.py:39:run] thread: 5 finished use[5.000792]
+NOTICE   : 08-26 11:24:50 : [1165670752] [spider.py:39:run] thread: 6 finished use[5.000654]
+NOTICE   : 08-26 11:24:50 : [1176160608] [spider.py:39:run] thread: 7 finished use[5.000064]
+NOTICE   : 08-26 11:24:50 : [1186650464] [spider.py:39:run] thread: 8 finished use[5.000181]
+NOTICE   : 08-26 11:24:50 : [1197140320] [spider.py:39:run] thread: 9 finished use[5.000335]
+NOTICE   : 08-26 11:24:50 : [1207630176] [spider.py:39:run] thread: 10 finished use[5.000726]
+NOTICE   : 08-26 11:24:50 : [1228609888] [spider.py:39:run] thread: 12 finished use[5.000134]
+NOTICE   : 08-26 11:24:50 : [1218120032] [spider.py:39:run] thread: 11 finished use[5.000661]
+NOTICE   : 08-26 11:24:50 : [1239099744] [spider.py:39:run] thread: 13 finished use[5.000593]
+NOTICE   : 08-26 11:24:50 : [1260079456] [spider.py:39:run] thread: 15 finished use[5.000693]
+NOTICE   : 08-26 11:24:50 : [1281059168] [spider.py:39:run] thread: 17 finished use[5.000466]
+NOTICE   : 08-26 11:24:50 : [1084918112] [spider.py:39:run] thread: 18 finished use[5.000496]
+NOTICE   : 08-26 11:24:50 : [1291549024] [spider.py:39:run] thread: 19 finished use[5.000249]
+NOTICE   : 08-26 11:24:50 : [1249589600] [spider.py:39:run] thread: 14 finished use[5.163113]
+NOTICE   : 08-26 11:24:52 : [1270569312] [spider.py:39:run] thread: 16 finished use[7.837372]
+NOTICE   : 08-26 12:26:49 : [1116309856] [spider.py:19:run] thread: 0 start
+NOTICE   : 08-26 12:26:49 : [1126799712] [spider.py:19:run] thread: 1 start
+NOTICE   : 08-26 12:26:49 : [1090419040] [spider.py:19:run] thread: 2 start
+NOTICE   : 08-26 12:26:49 : [1105090912] [spider.py:19:run] thread: 3 start
+NOTICE   : 08-26 12:26:49 : [1137289568] [spider.py:19:run] thread: 4 start
+NOTICE   : 08-26 12:26:49 : [1147779424] [spider.py:19:run] thread: 5 start
+NOTICE   : 08-26 12:26:49 : [1158269280] [spider.py:19:run] thread: 6 start
+NOTICE   : 08-26 12:26:49 : [1168759136] [spider.py:19:run] thread: 7 start
+NOTICE   : 08-26 12:26:49 : [1179248992] [spider.py:19:run] thread: 8 start
+NOTICE   : 08-26 12:26:49 : [1189738848] [spider.py:19:run] thread: 9 start
+NOTICE   : 08-26 12:26:49 : [1200228704] [spider.py:19:run] thread: 10 start
+NOTICE   : 08-26 12:26:49 : [1210718560] [spider.py:19:run] thread: 11 start
+NOTICE   : 08-26 12:26:49 : [1221208416] [spider.py:19:run] thread: 12 start
+NOTICE   : 08-26 12:26:49 : [1231698272] [spider.py:19:run] thread: 13 start
+NOTICE   : 08-26 12:26:49 : [1242188128] [spider.py:19:run] thread: 14 start
+NOTICE   : 08-26 12:26:49 : [1252677984] [spider.py:19:run] thread: 15 start
+NOTICE   : 08-26 12:26:49 : [1263167840] [spider.py:19:run] thread: 16 start
+NOTICE   : 08-26 12:26:49 : [1273657696] [spider.py:19:run] thread: 17 start
+NOTICE   : 08-26 12:26:49 : [1284147552] [spider.py:19:run] thread: 18 start
+NOTICE   : 08-26 12:26:49 : [1294637408] [spider.py:19:run] thread: 19 start
+NOTICE   : 08-26 12:26:54 : [1116309856] [spider.py:39:run] thread: 0 finished use[5.000680]
+NOTICE   : 08-26 12:26:54 : [1126799712] [spider.py:39:run] thread: 1 finished use[5.000619]
+NOTICE   : 08-26 12:26:54 : [1090419040] [spider.py:39:run] thread: 2 finished use[5.000252]
+NOTICE   : 08-26 12:26:54 : [1137289568] [spider.py:39:run] thread: 4 finished use[5.000659]
+NOTICE   : 08-26 12:26:54 : [1105090912] [spider.py:39:run] thread: 3 finished use[5.000710]
+NOTICE   : 08-26 12:26:54 : [1147779424] [spider.py:39:run] thread: 5 finished use[5.000294]
+NOTICE   : 08-26 12:26:54 : [1158269280] [spider.py:39:run] thread: 6 finished use[5.000678]
+NOTICE   : 08-26 12:26:54 : [1168759136] [spider.py:39:run] thread: 7 finished use[5.000620]
+NOTICE   : 08-26 12:26:54 : [1179248992] [spider.py:39:run] thread: 8 finished use[5.000779]
+NOTICE   : 08-26 12:26:54 : [1189738848] [spider.py:39:run] thread: 9 finished use[5.000461]
+NOTICE   : 08-26 12:26:54 : [1200228704] [spider.py:39:run] thread: 10 finished use[5.000277]
+NOTICE   : 08-26 12:26:54 : [1210718560] [spider.py:39:run] thread: 11 finished use[5.000712]
+NOTICE   : 08-26 12:26:54 : [1221208416] [spider.py:39:run] thread: 12 finished use[5.000286]
+NOTICE   : 08-26 12:26:54 : [1231698272] [spider.py:39:run] thread: 13 finished use[5.000682]
+NOTICE   : 08-26 12:26:54 : [1242188128] [spider.py:39:run] thread: 14 finished use[5.000280]
+NOTICE   : 08-26 12:26:54 : [1252677984] [spider.py:39:run] thread: 15 finished use[5.000568]
+NOTICE   : 08-26 12:26:54 : [1273657696] [spider.py:39:run] thread: 17 finished use[5.000702]
+NOTICE   : 08-26 12:26:54 : [1284147552] [spider.py:39:run] thread: 18 finished use[5.000232]
+NOTICE   : 08-26 12:26:54 : [1294637408] [spider.py:39:run] thread: 19 finished use[5.000676]
+NOTICE   : 08-26 12:26:55 : [1263167840] [spider.py:39:run] thread: 16 finished use[6.196401]
+NOTICE   : 08-26 14:13:19 : [1098774880] [spider.py:19:run] thread: 0 start
+NOTICE   : 08-26 14:13:19 : [1109264736] [spider.py:19:run] thread: 1 start
+NOTICE   : 08-26 14:13:19 : [1119754592] [spider.py:19:run] thread: 2 start
+NOTICE   : 08-26 14:13:19 : [1130244448] [spider.py:19:run] thread: 3 start
+NOTICE   : 08-26 14:13:19 : [1140734304] [spider.py:19:run] thread: 4 start
+NOTICE   : 08-26 14:13:19 : [1085942112] [spider.py:19:run] thread: 5 start
+NOTICE   : 08-26 14:13:19 : [1151224160] [spider.py:19:run] thread: 6 start
+NOTICE   : 08-26 14:13:19 : [1161714016] [spider.py:19:run] thread: 7 start
+NOTICE   : 08-26 14:13:19 : [1172203872] [spider.py:19:run] thread: 8 start
+NOTICE   : 08-26 14:13:19 : [1182693728] [spider.py:19:run] thread: 9 start
+NOTICE   : 08-26 14:13:19 : [1193183584] [spider.py:19:run] thread: 10 start
+NOTICE   : 08-26 14:13:19 : [1203673440] [spider.py:19:run] thread: 11 start
+NOTICE   : 08-26 14:13:19 : [1214163296] [spider.py:19:run] thread: 12 start
+NOTICE   : 08-26 14:13:19 : [1224653152] [spider.py:19:run] thread: 13 start
+NOTICE   : 08-26 14:13:19 : [1235143008] [spider.py:19:run] thread: 14 start
+NOTICE   : 08-26 14:13:19 : [1245632864] [spider.py:19:run] thread: 15 start
+NOTICE   : 08-26 14:13:19 : [1256122720] [spider.py:19:run] thread: 16 start
+NOTICE   : 08-26 14:13:19 : [1266612576] [spider.py:19:run] thread: 17 start
+NOTICE   : 08-26 14:13:19 : [1277102432] [spider.py:19:run] thread: 18 start
+NOTICE   : 08-26 14:13:19 : [1287592288] [spider.py:19:run] thread: 19 start
+NOTICE   : 08-26 14:13:24 : [1098774880] [spider.py:39:run] thread: 0 finished use[5.000407]
+NOTICE   : 08-26 14:13:24 : [1109264736] [spider.py:39:run] thread: 1 finished use[5.000602]
+NOTICE   : 08-26 14:13:24 : [1130244448] [spider.py:39:run] thread: 3 finished use[5.000393]
+NOTICE   : 08-26 14:13:24 : [1119754592] [spider.py:39:run] thread: 2 finished use[5.000910]
+NOTICE   : 08-26 14:13:24 : [1140734304] [spider.py:39:run] thread: 4 finished use[5.000211]
+NOTICE   : 08-26 14:13:24 : [1151224160] [spider.py:39:run] thread: 6 finished use[5.000320]
+NOTICE   : 08-26 14:13:24 : [1161714016] [spider.py:39:run] thread: 7 finished use[5.000075]
+NOTICE   : 08-26 14:13:24 : [1172203872] [spider.py:39:run] thread: 8 finished use[5.000228]
+NOTICE   : 08-26 14:13:24 : [1193183584] [spider.py:39:run] thread: 10 finished use[5.000141]
+NOTICE   : 08-26 14:13:24 : [1182693728] [spider.py:39:run] thread: 9 finished use[5.000736]
+NOTICE   : 08-26 14:13:24 : [1203673440] [spider.py:39:run] thread: 11 finished use[5.000613]
+NOTICE   : 08-26 14:13:24 : [1214163296] [spider.py:39:run] thread: 12 finished use[5.000192]
+NOTICE   : 08-26 14:13:24 : [1224653152] [spider.py:39:run] thread: 13 finished use[5.000576]
+NOTICE   : 08-26 14:13:24 : [1235143008] [spider.py:39:run] thread: 14 finished use[5.000635]
+NOTICE   : 08-26 14:13:24 : [1256122720] [spider.py:39:run] thread: 16 finished use[5.000285]
+NOTICE   : 08-26 14:13:24 : [1266612576] [spider.py:39:run] thread: 17 finished use[5.000726]
+NOTICE   : 08-26 14:13:24 : [1287592288] [spider.py:39:run] thread: 19 finished use[5.000144]
+NOTICE   : 08-26 14:13:24 : [1277102432] [spider.py:39:run] thread: 18 finished use[5.000766]
+NOTICE   : 08-26 14:13:24 : [1245632864] [spider.py:39:run] thread: 15 finished use[5.213998]
+NOTICE   : 08-26 14:13:24 : [1085942112] [spider.py:39:run] thread: 5 finished use[5.481099]
+NOTICE   : 08-26 15:04:23 : [1107196256] [spider.py:19:run] thread: 0 start
+NOTICE   : 08-26 15:04:23 : [1117686112] [spider.py:19:run] thread: 1 start
+NOTICE   : 08-26 15:04:23 : [1087269216] [spider.py:19:run] thread: 2 start
+NOTICE   : 08-26 15:04:23 : [1128175968] [spider.py:19:run] thread: 3 start
+NOTICE   : 08-26 15:04:23 : [1138665824] [spider.py:19:run] thread: 4 start
+NOTICE   : 08-26 15:04:23 : [1149155680] [spider.py:19:run] thread: 5 start
+NOTICE   : 08-26 15:04:23 : [1159645536] [spider.py:19:run] thread: 6 start
+NOTICE   : 08-26 15:04:23 : [1170135392] [spider.py:19:run] thread: 7 start
+NOTICE   : 08-26 15:04:23 : [1180625248] [spider.py:19:run] thread: 8 start
+NOTICE   : 08-26 15:04:23 : [1191115104] [spider.py:19:run] thread: 9 start
+NOTICE   : 08-26 15:04:23 : [1201604960] [spider.py:19:run] thread: 10 start
+NOTICE   : 08-26 15:04:23 : [1212094816] [spider.py:19:run] thread: 11 start
+NOTICE   : 08-26 15:04:23 : [1222584672] [spider.py:19:run] thread: 12 start
+NOTICE   : 08-26 15:04:23 : [1233074528] [spider.py:19:run] thread: 13 start
+NOTICE   : 08-26 15:04:23 : [1243564384] [spider.py:19:run] thread: 14 start
+NOTICE   : 08-26 15:04:23 : [1254054240] [spider.py:19:run] thread: 15 start
+NOTICE   : 08-26 15:04:23 : [1264544096] [spider.py:19:run] thread: 16 start
+NOTICE   : 08-26 15:04:23 : [1275033952] [spider.py:19:run] thread: 17 start
+NOTICE   : 08-26 15:04:23 : [1285523808] [spider.py:19:run] thread: 18 start
+NOTICE   : 08-26 15:04:23 : [1296013664] [spider.py:19:run] thread: 19 start
+NOTICE   : 08-26 15:04:28 : [1117686112] [spider.py:39:run] thread: 1 finished use[5.000633]
+NOTICE   : 08-26 15:04:28 : [1087269216] [spider.py:39:run] thread: 2 finished use[5.000280]
+NOTICE   : 08-26 15:04:28 : [1128175968] [spider.py:39:run] thread: 3 finished use[5.000652]
+NOTICE   : 08-26 15:04:28 : [1138665824] [spider.py:39:run] thread: 4 finished use[5.000477]
+NOTICE   : 08-26 15:04:28 : [1159645536] [spider.py:39:run] thread: 6 finished use[5.000601]
+NOTICE   : 08-26 15:04:28 : [1170135392] [spider.py:39:run] thread: 7 finished use[5.000272]
+NOTICE   : 08-26 15:04:28 : [1191115104] [spider.py:39:run] thread: 9 finished use[5.000073]
+NOTICE   : 08-26 15:04:28 : [1180625248] [spider.py:39:run] thread: 8 finished use[5.000426]
+NOTICE   : 08-26 15:04:28 : [1201604960] [spider.py:39:run] thread: 10 finished use[5.000456]
+NOTICE   : 08-26 15:04:28 : [1212094816] [spider.py:39:run] thread: 11 finished use[5.000739]
+NOTICE   : 08-26 15:04:28 : [1222584672] [spider.py:39:run] thread: 12 finished use[5.000520]
+NOTICE   : 08-26 15:04:28 : [1233074528] [spider.py:39:run] thread: 13 finished use[5.000717]
+NOTICE   : 08-26 15:04:28 : [1243564384] [spider.py:39:run] thread: 14 finished use[5.000406]
+NOTICE   : 08-26 15:04:28 : [1254054240] [spider.py:39:run] thread: 15 finished use[5.000338]
+NOTICE   : 08-26 15:04:28 : [1275033952] [spider.py:39:run] thread: 17 finished use[5.000328]
+NOTICE   : 08-26 15:04:28 : [1285523808] [spider.py:39:run] thread: 18 finished use[5.000187]
+NOTICE   : 08-26 15:04:28 : [1296013664] [spider.py:39:run] thread: 19 finished use[5.000731]
+NOTICE   : 08-26 15:04:29 : [1264544096] [spider.py:39:run] thread: 16 finished use[5.947193]
+NOTICE   : 08-26 15:04:29 : [1107196256] [spider.py:39:run] thread: 0 finished use[6.246349]
+NOTICE   : 08-26 15:04:30 : [1149155680] [spider.py:39:run] thread: 5 finished use[7.315006]
+NOTICE   : 08-26 15:31:52 : [1103116640] [spider.py:19:run] thread: 0 start
+NOTICE   : 08-26 15:31:52 : [1115208032] [spider.py:19:run] thread: 1 start
+NOTICE   : 08-26 15:31:52 : [1125697888] [spider.py:19:run] thread: 2 start
+NOTICE   : 08-26 15:31:52 : [1136187744] [spider.py:19:run] thread: 3 start
+NOTICE   : 08-26 15:31:52 : [1146677600] [spider.py:19:run] thread: 4 start
+NOTICE   : 08-26 15:31:52 : [1157167456] [spider.py:19:run] thread: 5 start
+NOTICE   : 08-26 15:31:52 : [1167657312] [spider.py:19:run] thread: 6 start
+NOTICE   : 08-26 15:31:52 : [1084713312] [spider.py:19:run] thread: 7 start
+NOTICE   : 08-26 15:31:52 : [1178147168] [spider.py:19:run] thread: 8 start
+NOTICE   : 08-26 15:31:52 : [1188637024] [spider.py:19:run] thread: 9 start
+NOTICE   : 08-26 15:31:52 : [1199126880] [spider.py:19:run] thread: 10 start
+NOTICE   : 08-26 15:31:52 : [1209616736] [spider.py:19:run] thread: 11 start
+NOTICE   : 08-26 15:31:52 : [1220106592] [spider.py:19:run] thread: 12 start
+NOTICE   : 08-26 15:31:52 : [1230596448] [spider.py:19:run] thread: 13 start
+NOTICE   : 08-26 15:31:52 : [1241086304] [spider.py:19:run] thread: 14 start
+NOTICE   : 08-26 15:31:52 : [1251576160] [spider.py:19:run] thread: 15 start
+NOTICE   : 08-26 15:31:52 : [1262066016] [spider.py:19:run] thread: 16 start
+NOTICE   : 08-26 15:31:52 : [1272555872] [spider.py:19:run] thread: 17 start
+NOTICE   : 08-26 15:31:52 : [1283045728] [spider.py:19:run] thread: 18 start
+NOTICE   : 08-26 15:31:52 : [1293535584] [spider.py:19:run] thread: 19 start
+NOTICE   : 08-26 15:31:57 : [1103116640] [spider.py:39:run] thread: 0 finished use[5.000606]
+NOTICE   : 08-26 15:31:57 : [1115208032] [spider.py:39:run] thread: 1 finished use[5.000781]
+NOTICE   : 08-26 15:31:57 : [1125697888] [spider.py:39:run] thread: 2 finished use[5.000470]
+NOTICE   : 08-26 15:31:57 : [1136187744] [spider.py:39:run] thread: 3 finished use[5.000616]
+NOTICE   : 08-26 15:31:57 : [1157167456] [spider.py:39:run] thread: 5 finished use[5.000517]
+NOTICE   : 08-26 15:31:57 : [1146677600] [spider.py:39:run] thread: 4 finished use[5.000372]
+NOTICE   : 08-26 15:31:57 : [1167657312] [spider.py:39:run] thread: 6 finished use[5.000662]
+NOTICE   : 08-26 15:31:57 : [1084713312] [spider.py:39:run] thread: 7 finished use[5.000121]
+NOTICE   : 08-26 15:31:57 : [1178147168] [spider.py:39:run] thread: 8 finished use[5.000248]
+NOTICE   : 08-26 15:31:57 : [1188637024] [spider.py:39:run] thread: 9 finished use[5.000706]
+NOTICE   : 08-26 15:31:57 : [1199126880] [spider.py:39:run] thread: 10 finished use[5.000266]
+NOTICE   : 08-26 15:31:57 : [1209616736] [spider.py:39:run] thread: 11 finished use[5.000513]
+NOTICE   : 08-26 15:31:57 : [1220106592] [spider.py:39:run] thread: 12 finished use[5.000629]
+NOTICE   : 08-26 15:31:57 : [1230596448] [spider.py:39:run] thread: 13 finished use[5.000044]
+NOTICE   : 08-26 15:31:57 : [1241086304] [spider.py:39:run] thread: 14 finished use[5.000280]
+NOTICE   : 08-26 15:31:57 : [1262066016] [spider.py:39:run] thread: 16 finished use[5.000113]
+NOTICE   : 08-26 15:31:57 : [1251576160] [spider.py:39:run] thread: 15 finished use[5.000719]
+NOTICE   : 08-26 15:31:57 : [1272555872] [spider.py:39:run] thread: 17 finished use[5.000370]
+NOTICE   : 08-26 15:31:57 : [1283045728] [spider.py:39:run] thread: 18 finished use[5.000646]
+NOTICE   : 08-26 15:31:57 : [1293535584] [spider.py:39:run] thread: 19 finished use[5.000672]
+NOTICE   : 08-26 17:27:53 : [1115986272] [spider.py:19:run] thread: 0 start
+NOTICE   : 08-26 17:27:53 : [1087293792] [spider.py:19:run] thread: 1 start
+NOTICE   : 08-26 17:27:53 : [1099614560] [spider.py:19:run] thread: 2 start
+NOTICE   : 08-26 17:27:53 : [1126476128] [spider.py:19:run] thread: 3 start
+NOTICE   : 08-26 17:27:53 : [1136965984] [spider.py:19:run] thread: 4 start
+NOTICE   : 08-26 17:27:53 : [1147455840] [spider.py:19:run] thread: 5 start
+NOTICE   : 08-26 17:27:53 : [1157945696] [spider.py:19:run] thread: 6 start
+NOTICE   : 08-26 17:27:53 : [1168435552] [spider.py:19:run] thread: 7 start
+NOTICE   : 08-26 17:27:53 : [1178925408] [spider.py:19:run] thread: 8 start
+NOTICE   : 08-26 17:27:53 : [1189415264] [spider.py:19:run] thread: 9 start
+NOTICE   : 08-26 17:27:53 : [1199905120] [spider.py:19:run] thread: 10 start
+NOTICE   : 08-26 17:27:53 : [1210394976] [spider.py:19:run] thread: 11 start
+NOTICE   : 08-26 17:27:53 : [1220884832] [spider.py:19:run] thread: 12 start
+NOTICE   : 08-26 17:27:53 : [1231374688] [spider.py:19:run] thread: 13 start
+NOTICE   : 08-26 17:27:53 : [1241864544] [spider.py:19:run] thread: 14 start
+NOTICE   : 08-26 17:27:53 : [1252354400] [spider.py:19:run] thread: 15 start
+NOTICE   : 08-26 17:27:53 : [1262844256] [spider.py:19:run] thread: 16 start
+NOTICE   : 08-26 17:27:53 : [1273334112] [spider.py:19:run] thread: 17 start
+NOTICE   : 08-26 17:27:53 : [1283823968] [spider.py:19:run] thread: 18 start
+NOTICE   : 08-26 17:27:53 : [1294313824] [spider.py:19:run] thread: 19 start
+NOTICE   : 08-26 17:27:58 : [1115986272] [spider.py:39:run] thread: 0 finished use[5.000303]
+NOTICE   : 08-26 17:27:58 : [1087293792] [spider.py:39:run] thread: 1 finished use[5.000096]
+NOTICE   : 08-26 17:27:58 : [1126476128] [spider.py:39:run] thread: 3 finished use[5.000162]
+NOTICE   : 08-26 17:27:58 : [1099614560] [spider.py:39:run] thread: 2 finished use[5.000911]
+NOTICE   : 08-26 17:27:58 : [1136965984] [spider.py:39:run] thread: 4 finished use[5.000346]
+NOTICE   : 08-26 17:27:58 : [1147455840] [spider.py:39:run] thread: 5 finished use[5.000634]
+NOTICE   : 08-26 17:27:58 : [1157945696] [spider.py:39:run] thread: 6 finished use[5.000465]
+NOTICE   : 08-26 17:27:58 : [1168435552] [spider.py:39:run] thread: 7 finished use[5.000509]
+NOTICE   : 08-26 17:27:58 : [1189415264] [spider.py:39:run] thread: 9 finished use[5.000236]
+NOTICE   : 08-26 17:27:58 : [1178925408] [spider.py:39:run] thread: 8 finished use[5.000997]
+NOTICE   : 08-26 17:27:58 : [1199905120] [spider.py:39:run] thread: 10 finished use[5.000188]
+NOTICE   : 08-26 17:27:58 : [1210394976] [spider.py:39:run] thread: 11 finished use[5.000595]
+NOTICE   : 08-26 17:27:58 : [1220884832] [spider.py:39:run] thread: 12 finished use[5.000401]
+NOTICE   : 08-26 17:27:58 : [1231374688] [spider.py:39:run] thread: 13 finished use[5.000621]
+NOTICE   : 08-26 17:27:58 : [1241864544] [spider.py:39:run] thread: 14 finished use[5.000662]
+NOTICE   : 08-26 17:27:58 : [1252354400] [spider.py:39:run] thread: 15 finished use[5.000179]
+NOTICE   : 08-26 17:27:58 : [1262844256] [spider.py:39:run] thread: 16 finished use[5.000477]
+NOTICE   : 08-26 17:27:58 : [1273334112] [spider.py:39:run] thread: 17 finished use[5.000475]
+NOTICE   : 08-26 17:27:58 : [1283823968] [spider.py:39:run] thread: 18 finished use[5.000035]
+NOTICE   : 08-26 17:27:58 : [1294313824] [spider.py:39:run] thread: 19 finished use[5.000699]
+NOTICE   : 08-26 17:38:12 : [1105729888] [spider.py:19:run] thread: 0 start
+NOTICE   : 08-26 17:38:12 : [1089251680] [spider.py:19:run] thread: 1 start
+NOTICE   : 08-26 17:38:12 : [1116219744] [spider.py:19:run] thread: 2 start
+NOTICE   : 08-26 17:38:12 : [1126709600] [spider.py:19:run] thread: 3 start
+NOTICE   : 08-26 17:38:12 : [1137199456] [spider.py:19:run] thread: 4 start
+NOTICE   : 08-26 17:38:12 : [1147689312] [spider.py:19:run] thread: 5 start
+NOTICE   : 08-26 17:38:12 : [1158179168] [spider.py:19:run] thread: 6 start
+NOTICE   : 08-26 17:38:12 : [1168669024] [spider.py:19:run] thread: 7 start
+NOTICE   : 08-26 17:38:12 : [1179158880] [spider.py:19:run] thread: 8 start
+NOTICE   : 08-26 17:38:12 : [1189648736] [spider.py:19:run] thread: 9 start
+NOTICE   : 08-26 17:38:12 : [1200138592] [spider.py:19:run] thread: 10 start
+NOTICE   : 08-26 17:38:12 : [1210628448] [spider.py:19:run] thread: 11 start
+NOTICE   : 08-26 17:38:12 : [1221118304] [spider.py:19:run] thread: 12 start
+NOTICE   : 08-26 17:38:12 : [1231608160] [spider.py:19:run] thread: 13 start
+NOTICE   : 08-26 17:38:12 : [1242098016] [spider.py:19:run] thread: 14 start
+NOTICE   : 08-26 17:38:12 : [1252587872] [spider.py:19:run] thread: 15 start
+NOTICE   : 08-26 17:38:12 : [1263077728] [spider.py:19:run] thread: 16 start
+NOTICE   : 08-26 17:38:12 : [1273567584] [spider.py:19:run] thread: 17 start
+NOTICE   : 08-26 17:38:12 : [1284057440] [spider.py:19:run] thread: 18 start
+NOTICE   : 08-26 17:38:12 : [1294547296] [spider.py:19:run] thread: 19 start
+NOTICE   : 08-26 17:44:43 : [1105729888] [spider.py:39:run] thread: 0 finished use[391.000216]
+NOTICE   : 08-26 17:44:43 : [1089251680] [spider.py:39:run] thread: 1 finished use[391.000588]
+NOTICE   : 08-26 17:44:43 : [1116219744] [spider.py:39:run] thread: 2 finished use[391.000508]
+NOTICE   : 08-26 17:44:43 : [1126709600] [spider.py:39:run] thread: 3 finished use[391.000718]
+NOTICE   : 08-26 17:44:43 : [1137199456] [spider.py:39:run] thread: 4 finished use[391.000384]
+NOTICE   : 08-26 17:44:43 : [1147689312] [spider.py:39:run] thread: 5 finished use[391.000742]
+NOTICE   : 08-26 17:44:43 : [1158179168] [spider.py:39:run] thread: 6 finished use[391.000421]
+NOTICE   : 08-26 17:44:43 : [1168669024] [spider.py:39:run] thread: 7 finished use[391.000333]
+NOTICE   : 08-26 17:44:43 : [1179158880] [spider.py:39:run] thread: 8 finished use[391.000364]
+NOTICE   : 08-26 17:44:43 : [1189648736] [spider.py:39:run] thread: 9 finished use[391.000610]
+NOTICE   : 08-26 17:44:43 : [1200138592] [spider.py:39:run] thread: 10 finished use[391.000216]
+NOTICE   : 08-26 17:44:43 : [1210628448] [spider.py:39:run] thread: 11 finished use[391.000560]
+NOTICE   : 08-26 17:44:43 : [1221118304] [spider.py:39:run] thread: 12 finished use[391.000685]
+NOTICE   : 08-26 17:44:43 : [1231608160] [spider.py:39:run] thread: 13 finished use[391.000142]
+NOTICE   : 08-26 17:44:43 : [1242098016] [spider.py:39:run] thread: 14 finished use[391.000446]
+NOTICE   : 08-26 17:44:43 : [1252587872] [spider.py:39:run] thread: 15 finished use[391.000668]
+NOTICE   : 08-26 17:44:43 : [1263077728] [spider.py:39:run] thread: 16 finished use[391.000144]
+NOTICE   : 08-26 17:44:43 : [1273567584] [spider.py:39:run] thread: 17 finished use[391.000348]
+NOTICE   : 08-26 17:44:43 : [1284057440] [spider.py:39:run] thread: 18 finished use[391.000709]
+NOTICE   : 08-26 17:44:43 : [1294547296] [spider.py:39:run] thread: 19 finished use[391.000180]
+NOTICE   : 08-26 18:29:52 : [1085118816] [spider.py:19:run] thread: 0 start
+NOTICE   : 08-26 18:29:52 : [1095608672] [spider.py:19:run] thread: 1 start
+NOTICE   : 08-26 18:29:52 : [1107401056] [spider.py:19:run] thread: 2 start
+NOTICE   : 08-26 18:29:52 : [1117890912] [spider.py:19:run] thread: 3 start
+NOTICE   : 08-26 18:29:52 : [1128380768] [spider.py:19:run] thread: 4 start
+NOTICE   : 08-26 18:29:52 : [1138870624] [spider.py:19:run] thread: 5 start
+NOTICE   : 08-26 18:29:52 : [1149360480] [spider.py:19:run] thread: 6 start
+NOTICE   : 08-26 18:29:52 : [1159850336] [spider.py:19:run] thread: 7 start
+NOTICE   : 08-26 18:29:52 : [1170340192] [spider.py:19:run] thread: 8 start
+NOTICE   : 08-26 18:29:52 : [1180830048] [spider.py:19:run] thread: 9 start
+NOTICE   : 08-26 18:29:52 : [1191319904] [spider.py:19:run] thread: 10 start
+NOTICE   : 08-26 18:29:52 : [1201809760] [spider.py:19:run] thread: 11 start
+NOTICE   : 08-26 18:29:52 : [1212299616] [spider.py:19:run] thread: 12 start
+NOTICE   : 08-26 18:29:52 : [1222789472] [spider.py:19:run] thread: 13 start
+NOTICE   : 08-26 18:29:52 : [1233279328] [spider.py:19:run] thread: 14 start
+NOTICE   : 08-26 18:29:52 : [1243769184] [spider.py:19:run] thread: 15 start
+NOTICE   : 08-26 18:29:52 : [1254259040] [spider.py:19:run] thread: 16 start
+NOTICE   : 08-26 18:29:52 : [1264748896] [spider.py:19:run] thread: 17 start
+NOTICE   : 08-26 18:29:52 : [1275238752] [spider.py:19:run] thread: 18 start
+NOTICE   : 08-26 18:29:52 : [1285728608] [spider.py:19:run] thread: 19 start
+NOTICE   : 08-26 18:36:23 : [1085118816] [spider.py:39:run] thread: 0 finished use[391.000237]
+NOTICE   : 08-26 18:36:23 : [1117890912] [spider.py:39:run] thread: 3 finished use[391.000676]
+NOTICE   : 08-26 18:36:23 : [1107401056] [spider.py:39:run] thread: 2 finished use[391.000246]
+NOTICE   : 08-26 18:36:23 : [1128380768] [spider.py:39:run] thread: 4 finished use[391.000502]
+NOTICE   : 08-26 18:36:23 : [1138870624] [spider.py:39:run] thread: 5 finished use[391.000567]
+NOTICE   : 08-26 18:36:23 : [1149360480] [spider.py:39:run] thread: 6 finished use[391.000087]
+NOTICE   : 08-26 18:36:23 : [1159850336] [spider.py:39:run] thread: 7 finished use[391.000230]
+NOTICE   : 08-26 18:36:23 : [1180830048] [spider.py:39:run] thread: 9 finished use[391.000330]
+NOTICE   : 08-26 18:36:23 : [1170340192] [spider.py:39:run] thread: 8 finished use[391.000805]
+NOTICE   : 08-26 18:36:23 : [1191319904] [spider.py:39:run] thread: 10 finished use[391.000441]
+NOTICE   : 08-26 18:36:23 : [1201809760] [spider.py:39:run] thread: 11 finished use[391.000576]
+NOTICE   : 08-26 18:36:23 : [1212299616] [spider.py:39:run] thread: 12 finished use[391.000188]
+NOTICE   : 08-26 18:36:23 : [1222789472] [spider.py:39:run] thread: 13 finished use[391.000643]
+NOTICE   : 08-26 18:36:23 : [1243769184] [spider.py:39:run] thread: 15 finished use[391.000334]
+NOTICE   : 08-26 18:36:23 : [1254259040] [spider.py:39:run] thread: 16 finished use[391.000646]
+NOTICE   : 08-26 18:36:23 : [1264748896] [spider.py:39:run] thread: 17 finished use[391.000292]
+NOTICE   : 08-26 18:36:23 : [1275238752] [spider.py:39:run] thread: 18 finished use[391.000528]
+NOTICE   : 08-26 18:36:24 : [1095608672] [spider.py:39:run] thread: 1 finished use[392.023208]
+NOTICE   : 08-26 18:36:24 : [1285728608] [spider.py:39:run] thread: 19 finished use[392.048304]
+NOTICE   : 08-26 18:36:27 : [1233279328] [spider.py:39:run] thread: 14 finished use[394.336602]
