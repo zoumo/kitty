@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-To use, simply 'import pylog' and pylog.init(filename)
+To use, simply 'import log' and log.init(filename)
 based on logging
 """
 
@@ -9,7 +9,7 @@ import os, sys, time, logging, logging.handlers
 
 __all__ = ['NONE', 'DEBUG', 'TRACE', 'NOTICE', 'WARNING', 'FATAL', 'ALL',
            'DEFAULT_LOG_FORMAT', 'DEFAULT_TIME_FORMAT', 'DEFAULT_LOG_LEVEL'
-           'init', 'pylogger']
+           'init', 'logger']
 
 
 __author__  = "Jim Zhang"
@@ -57,7 +57,7 @@ DEFAULT_TIME_FORMAT = "%m-%d %H:%M:%S"
 DEFAULT_LOG_LEVEL = ALL #NOTICE | WARNING | FATAL
 
 _HAS_INIT = False
-pylogger = None
+logger = None
 
 #------------------------------------------------------------------------------
 #   init function
@@ -71,28 +71,28 @@ def init(filename, loglvl = DEFAULT_LOG_LEVEL, fmt = DEFAULT_LOG_FORMAT, datefmt
     datefmt   date format string    default %m-%d %H:%M:%S
     """
     global _HAS_INIT
-    global pylogger
+    global logger
 
     if _HAS_INIT:
-        print "pylogger has inited"
+        print "logger has inited"
         return
 
     for level in _LEVEL_NAME_MAP:
         logging.addLevelName(level, _LEVEL_NAME_MAP[level])
     # user-definded log class
     logging.setLoggerClass(SysLog)
-    pylogger = logging.getLogger('syslog')
+    logger = logging.getLogger('kitty-syslog')
 
     hdlr = logging.handlers.TimedRotatingFileHandler(filename, when='d')
     fmtr = logging.Formatter(fmt, datefmt)
 
     hdlr.setFormatter(fmtr)
-    pylogger.addHandler(hdlr)
+    logger.addHandler(hdlr)
     # need this statement
-    pylogger.setLevel(NONE)
+    logger.setLevel(NONE)
 
     filt = SysLogFilter(loglvl)
-    pylogger.addFilter(filt)
+    logger.addFilter(filt)
 
     _HAS_INIT = True
 
@@ -145,11 +145,11 @@ class SysLog(logging.Logger):
 def test():
     init('test.log')
 
-    pylogger.debug("this is debug")
-    pylogger.notice("this is notice")
-    pylogger.trace("this is trace")
-    pylogger.warning("this is warning")
-    pylogger.fatal("this is fatal")
+    logger.debug("this is debug")
+    logger.notice("this is notice")
+    logger.trace("this is trace")
+    logger.warning("this is warning")
+    logger.fatal("this is fatal")
 
 if __name__ == '__main__':
     test()

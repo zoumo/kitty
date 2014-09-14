@@ -7,7 +7,7 @@ based on logging
 
 import os, sys, time
 # sign.so
-import sign
+# import sign
 
 # __all__ = ['empty']
 
@@ -30,14 +30,14 @@ def empty(obj) :
     else :
         return False
 
-def sign_fs64(text):
-    """
-    计算文本的fs64签名
-    """
-    (flag, high, low) = sign.fs64(text)
-    #return ((low << 32) + high)
-    # return ((high << 32) + low)
-    return (high, low)
+# def sign_fs64(text):
+#     """
+#     计算文本的fs64签名
+#     """
+#     (flag, high, low) = sign.fs64(text)
+#     #return ((low << 32) + high)
+#     # return ((high << 32) + low)
+#     return (high, low)
 
 # def getTimeSuffix(split = False, kind = 'day'):
 #     if split == False:

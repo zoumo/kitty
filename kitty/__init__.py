@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 import os, sys
 
-__all__ = ['ROOT_PATH', 'CONF_PATH', 'LOG_PATH', 'BIN_PATH', 'DATA_PATH', 'LIB_PATH',
-           'pylog', 'pylogger', 'utils', 'argparse']
+
 
 __author__  = "Jim Zhang"
 __status__  = "production"
@@ -22,26 +21,35 @@ BIN_PATH  = ROOT_PATH + "/bin"
 DATA_PATH = ROOT_PATH + "/data"
 LIB_PATH  = ROOT_PATH + "/lib"
 
-sys.path.append(LIB_PATH)
-sys.path.append(CONF_PATH)
+# sys.path.append(ROOT_PATH)
+# sys.path.append(LIB_PATH)
+# sys.path.append(CONF_PATH)
 
 # user definded logger
-import pylog
-pylog.init(LOG_PATH + "/spider.log")
-# must imprt pylogger after init()
-from pylog import pylogger
+
 
 # user definded functions
-import utils
+# import kitty.utils
 
-# Command-line option and argument parsing library
-# https://docs.python.org/dev/library/argparse.html
-import argparse
+def setup(app_name, root_path):
+    import kitty.log
+    import kitty.conf
+
+    log_path = root_path + "/log"
+    log_file = log_path + "/" + app_name + ".log"
+    if not os.path.isdir(log_path):
+        os.mkdir(log_path)
+
+    kitty.log.init(log_file)
+
 
 #---------------------------------------------------------------------------
 #   test
 #---------------------------------------------------------------------------
 def opt_parse():
+    # Command-line option and argument parsing library
+    # https://docs.python.org/dev/library/argparse.html
+    import argparse
     parser = argparse.ArgumentParser(description='this is a spider')
     parser.add_argument('file',
                         help='query list file path')
@@ -52,4 +60,4 @@ def opt_parse():
 
 
 if __name__ == "__main__" :
-    pass
+    args = opt_parse()

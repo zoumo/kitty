@@ -1,9 +1,22 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
+import sys, argparse
 from os.path import dirname, realpath
-sys.path.append(dirname(dirname(realpath(__file__))))
-from conf import *
+
+try:
+    # install
+    import kitty
+except ImportError, e:
+    #local
+    sys.path.append(dirname(dirname(realpath(__file__))))
+    import kitty
+finally:
+    print dir(kitty.log)
+    ROOT_PATH = dirname(dirname(realpath(__file__)))
+    kitty.setup('spider', ROOT_PATH)
+    from kitty.log import logger
+    from kitty import utils
+
 
 #///
 
@@ -14,15 +27,14 @@ def opt_parse():
     return args
 
 if __name__ == "__main__" :
-    print utils.sign_fs64("zhangjun17")
     print opt_parse()
 
-    pylogger.debug("this is debug")
-    pylogger.notice("this is notice")
-    pylogger.trace("this is trace")
-    pylogger.warning("this is warning")
-    pylogger.fatal("this is fatal")
+    logger.debug("this is debug")
+    logger.notice("this is notice")
+    logger.trace("this is trace")
+    logger.warning("this is warning")
+    logger.fatal("this is fatal")
 
-    print utils.empty(pylogger)
+    print utils.empty(logger)
     print utils.empty({})
     
