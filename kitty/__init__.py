@@ -2,46 +2,32 @@
 # -*- coding: utf-8 -*-
 import os, sys
 
-
-
 __author__  = "Jim Zhang"
-__status__  = "production"
-# Note: the attributes below are no longer maintained.
-__version__ = "0.1.0.0"
-__date__    = "24/08/2014"
+VERSION = (1, 0, 0, 'alpha', 0)
+
+def get_version(*args, **kwargs):
+    # Avoid circular import
+    from kitty.utils.version import get_version
+    return get_version(*args, **kwargs)
+
+def setup(settings_modeul):
+
+    from kitty.utils import log
+    from kitty.conf import KITTY_SETTINGS_MODULE, settings
+    os.environ.setdefault(KITTY_SETTINGS_MODULE, settings_modeul)
+
+    # settings.configure()
+
+    log_file = settings.LOG_PATH + "/" + settings.APP_NAME + ".log"
+    if not os.path.isdir(settings.LOG_PATH):
+        os.mkdir(settings.LOG_PATH)
+
+    log.init(log_file)
 
 #---------------------------------------------------------------------------
-#   conf init
+#   conf
 #---------------------------------------------------------------------------
-
-ROOT_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-CONF_PATH = ROOT_PATH + "/conf"
-LOG_PATH  = ROOT_PATH + "/log"
-BIN_PATH  = ROOT_PATH + "/bin"
-DATA_PATH = ROOT_PATH + "/data"
-LIB_PATH  = ROOT_PATH + "/lib"
-
-# sys.path.append(ROOT_PATH)
-# sys.path.append(LIB_PATH)
-# sys.path.append(CONF_PATH)
-
-# user definded logger
-
-
-# user definded functions
-# import kitty.utils
-
-def setup(app_name, root_path):
-    import kitty.log
-    import kitty.conf
-
-    log_path = root_path + "/log"
-    log_file = log_path + "/" + app_name + ".log"
-    if not os.path.isdir(log_path):
-        os.mkdir(log_path)
-
-    kitty.log.init(log_file)
-
+__version__ = get_version(VERSION)
 
 #---------------------------------------------------------------------------
 #   test

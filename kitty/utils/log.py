@@ -1,11 +1,14 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-To use, simply 'import log' and log.init(filename)
+This utils is independent, you can use it with out anyother module
+
+To use, simply 'import kitty.utils.log' and kitty.utils.init(filename)
 based on logging
 """
 
-import os, sys, time, logging, logging.handlers
+import os, sys, time
+import logging, logging.handlers
 
 __all__ = ['NONE', 'DEBUG', 'TRACE', 'NOTICE', 'WARNING', 'FATAL', 'ALL',
            'DEFAULT_LOG_FORMAT', 'DEFAULT_TIME_FORMAT', 'DEFAULT_LOG_LEVEL'
@@ -48,21 +51,21 @@ _NAME_LEVEL_MAP = {
     'FATAL'   : FATAL,
 }
 
+_HAS_INIT = False
+logger = None
+
 #------------------------------------------------------------------------------
 #   default conf
 #------------------------------------------------------------------------------
 
 DEFAULT_LOG_FORMAT  = "%(levelname)-9s: %(asctime)s : [%(thread)d] [%(filename)s:%(lineno)d:%(funcName)s] %(message)s"
 DEFAULT_TIME_FORMAT = "%m-%d %H:%M:%S"
-DEFAULT_LOG_LEVEL = ALL #NOTICE | WARNING | FATAL
-
-_HAS_INIT = False
-logger = None
+DEFAULT_LOG_LEVEL = ALL # NOTICE | WARNING | FATAL
 
 #------------------------------------------------------------------------------
 #   init function
 #------------------------------------------------------------------------------
-def init(filename, loglvl = DEFAULT_LOG_LEVEL, fmt = DEFAULT_LOG_FORMAT, datefmt = DEFAULT_TIME_FORMAT):
+def init(filename, loglvl=DEFAULT_LOG_LEVEL, fmt=DEFAULT_LOG_FORMAT, datefmt=DEFAULT_TIME_FORMAT):
     """
     args:
     filename

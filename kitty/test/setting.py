@@ -3,11 +3,10 @@
 
 import os
 
-APP_NAME = "kitty"
+APP_NAME = "spider"
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 ROOT_PATH = BASE_PATH
 LOG_PATH = ROOT_PATH + "/log"
-
 DEBUG = False
 
 # Default content type and charset to use for all HttpResponse objects, if a
