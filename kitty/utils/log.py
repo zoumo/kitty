@@ -52,7 +52,7 @@ _NAME_LEVEL_MAP = {
 }
 
 _HAS_INIT = False
-logger = None
+
 
 #------------------------------------------------------------------------------
 #   default conf
@@ -61,6 +61,8 @@ logger = None
 DEFAULT_LOG_FORMAT  = "%(levelname)-9s: %(asctime)s : [%(thread)d] [%(filename)s:%(lineno)d:%(funcName)s] %(message)s"
 DEFAULT_TIME_FORMAT = "%m-%d %H:%M:%S"
 DEFAULT_LOG_LEVEL = ALL # NOTICE | WARNING | FATAL
+
+
 
 #------------------------------------------------------------------------------
 #   init function
@@ -83,7 +85,7 @@ def init(filename, loglvl=DEFAULT_LOG_LEVEL, fmt=DEFAULT_LOG_FORMAT, datefmt=DEF
     for level in _LEVEL_NAME_MAP:
         logging.addLevelName(level, _LEVEL_NAME_MAP[level])
     # user-definded log class
-    logging.setLoggerClass(SysLog)
+    # logging.setLoggerClass(SysLog)
     logger = logging.getLogger('kitty-syslog')
 
     hdlr = logging.handlers.TimedRotatingFileHandler(filename, when='d')
@@ -141,6 +143,19 @@ class SysLog(logging.Logger):
 
     def fatal(self, msg, *args, **kwargs):
         apply(self._log, (WARNING, msg, args), kwargs)
+
+
+
+# ----------------------------------------------------------------------------
+logging.setLoggerClass(SysLog)
+logger = logging.getLogger()
+hdlr = logging.StreamHandler(sys.stderr)
+fmtr = logging.Formatter(DEFAULT_LOG_FORMAT, DEFAULT_TIME_FORMAT)
+hdlr.setFormatter(fmtr)
+logger.addHandler(hdlr)
+logger.setLevel(NONE)
+filt = SysLogFilter(ALL)
+logger.addFilter(filt)
 
 # -----------------------------------------------------------------------------
 #    test

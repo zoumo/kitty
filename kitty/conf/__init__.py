@@ -12,6 +12,7 @@ import os, sys
 import importlib
 
 from kitty.conf import global_settings
+from kitty.core.exceptions import ImproperlyConfigured
 from kitty.utils.functional import LazyObject, empty
 from kitty.utils import six
 from kitty.utils.log import logger
@@ -87,10 +88,10 @@ class Settings(BaseSettings):
 
         self._explicit_settings = set()
 
-        if settings_module is not None:
+        # not follows -- None | "" | False
+        if settings_module :
             # store the settings module in case someone later cares
             self.SETTINGS_MODULE = settings_module
-
             try:
                 mod = importlib.import_module(self.SETTINGS_MODULE)
             except ImportError as e:

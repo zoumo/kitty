@@ -10,11 +10,11 @@ def get_version(*args, **kwargs):
     from kitty.utils.version import get_version
     return get_version(*args, **kwargs)
 
-def setup(settings_modeul):
+def setup(settings_module=""):
 
     from kitty.utils import log
     from kitty.conf import KITTY_SETTINGS_MODULE, settings
-    os.environ.setdefault(KITTY_SETTINGS_MODULE, settings_modeul)
+    os.environ.setdefault(KITTY_SETTINGS_MODULE, settings_module)
 
     # settings.configure()
 
