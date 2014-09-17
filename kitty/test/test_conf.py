@@ -32,12 +32,13 @@ if __name__ == "__main__" :
     # print empty({})
 
     
+    # kitty.setup("kitty.test.setting")
     kitty.setup()
     from kitty.conf import settings
     from kitty.utils.log import logger
     from kitty.utils.function import empty
 
-
+    logger.notice("wocao")
     print settings.SETTINGS_MODULE
     # print dir(settings)
     print empty([])

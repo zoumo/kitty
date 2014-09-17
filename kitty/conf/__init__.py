@@ -19,7 +19,7 @@ from kitty.utils.log import logger
 
 
 KITTY_SETTINGS_MODULE = "KITTY_SETTINGS_MODULE"
-
+DEFAULT_SETTINGS_MODULE = "kitty.conf.global_settings"
 
 class LazySettings(LazyObject):
     """
@@ -35,6 +35,7 @@ class LazySettings(LazyObject):
         previously configured the settings manually.
         """
         settings_module = os.environ.get(KITTY_SETTINGS_MODULE)
+        print name
         if not settings_module:
             desc = ("setting %s" % name) if name else "settings"
             # raise ImproperlyConfigured(
@@ -42,8 +43,16 @@ class LazySettings(LazyObject):
             #     "You must either define the environment variable %s "
             #     "or call settings.configure() before accessing settings."
             #     % (desc, KITTY_SETTINGS_MODULE))
-            logger.warning("Requested %s, but settings are not configured. use default settings", desc)
+            logger.warning("Requested [%s], but settings are not configured. use default settings [%s]", desc, DEFAULT_SETTINGS_MODULE)
+        else:
+            logger.warning("lazy init settings module [%s]", settings_module)
+
         self._wrapped = Settings(settings_module)
+
+    # def __getattr__(self, name):
+    #     if self._wrapped is empty:
+    #         self._setup(name)
+    #     return getattr(self._wrapped, name)
 
     def configure(self, default_settings=global_settings, **options):
         """
@@ -71,7 +80,7 @@ class BaseSettings(object):
     it is used to check the format by __setattr__
     """
 
-    SETTINGS_MODULE = "kitty.conf.global_settings"
+    SETTINGS_MODULE = DEFAULT_SETTINGS_MODULE
 
     def __setattr__(self, name, value):
         if name in ("MEDIA_URL", "STATIC_URL") and value and not value.endswith('/'):
@@ -96,7 +105,7 @@ class Settings(BaseSettings):
                 mod = importlib.import_module(self.SETTINGS_MODULE)
             except ImportError as e:
                 raise ImportError(
-                    "Could not import settings '%s' (Is it on sys.path? Is there an "
+                    "Could not import settings [%s] (Is it on sys.path? Is there an "
                     "import error in the settings file?): %s"
                     % (self.SETTINGS_MODULE, e)
                 )

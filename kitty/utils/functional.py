@@ -9,7 +9,7 @@ empty = object()
 def new_method_proxy(func):
     def inner(self, *args):
         if self._wrapped is empty:
-            self._setup()
+            self._setup(*args)
         return func(self._wrapped, *args)
     return inner
 
@@ -47,7 +47,7 @@ class LazyObject(object):
             self._setup()
         delattr(self._wrapped, name)
 
-    def _setup(self):
+    def _setup(self, *args):
         """
         Must be implemented by subclasses to initialize the wrapped object.
         """

@@ -51,6 +51,9 @@ _NAME_LEVEL_MAP = {
     'FATAL'   : FATAL,
 }
 
+for level in _LEVEL_NAME_MAP:
+    logging.addLevelName(level, _LEVEL_NAME_MAP[level])
+
 _HAS_INIT = False
 
 
@@ -58,10 +61,55 @@ _HAS_INIT = False
 #   default conf
 #------------------------------------------------------------------------------
 
-DEFAULT_LOG_FORMAT  = "%(levelname)-9s: %(asctime)s : [%(thread)d] [%(filename)s:%(lineno)d:%(funcName)s] %(message)s"
+DEFAULT_LOG_FORMAT  = "%(levelname)-9s: %(asctime)s : [%(name)s] [%(thread)d] [%(filename)s:%(lineno)d:%(funcName)s] %(message)s"
 DEFAULT_TIME_FORMAT = "%m-%d %H:%M:%S"
 DEFAULT_LOG_LEVEL = ALL # NOTICE | WARNING | FATAL
 
+DEFAULT_LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
+        'null': {
+            'class': 'logging.NullHandler',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'kitty': {
+            'handlers': ['console'],
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.security': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'py.warnings': {
+            'handlers': ['console'],
+        },
+    }
+}
 
 
 #------------------------------------------------------------------------------
@@ -72,7 +120,7 @@ def init(filename, loglvl=DEFAULT_LOG_LEVEL, fmt=DEFAULT_LOG_FORMAT, datefmt=DEF
     args:
     filename
     loglvl    available log level   default ALL
-    fmt       log format string     default %(levelname)-9s: %(asctime)s : [%(thread)d] [%(filename)s:%(lineno)d:%(funcName)s] %(message)s
+    fmt       log format string     default %(levelname)-9s: %(asctime)s : [%(name)s] [%(thread)d] [%(filename)s:%(lineno)d:%(funcName)s] %(message)s
     datefmt   date format string    default %m-%d %H:%M:%S
     """
     global _HAS_INIT
@@ -82,22 +130,23 @@ def init(filename, loglvl=DEFAULT_LOG_LEVEL, fmt=DEFAULT_LOG_FORMAT, datefmt=DEF
         print "logger has inited"
         return
 
-    for level in _LEVEL_NAME_MAP:
-        logging.addLevelName(level, _LEVEL_NAME_MAP[level])
-    # user-definded log class
+
+    # thread safe
+    # no need to call hdlr.createLock(), it is called in hdlr.__init__()
+    
     # logging.setLoggerClass(SysLog)
-    logger = logging.getLogger('kitty-syslog')
+    logger = logging.getLogger('kitty.log')
+    # dispensable - logger.setLevel(NONE)
+    filt = SysLogFilter(loglvl)
+    logger.addFilter(filt)
 
     hdlr = logging.handlers.TimedRotatingFileHandler(filename, when='d')
     fmtr = logging.Formatter(fmt, datefmt)
 
     hdlr.setFormatter(fmtr)
     logger.addHandler(hdlr)
-    # need this statement
-    logger.setLevel(NONE)
 
-    filt = SysLogFilter(loglvl)
-    logger.addFilter(filt)
+
 
     _HAS_INIT = True
 
@@ -107,7 +156,8 @@ def init(filename, loglvl=DEFAULT_LOG_LEVEL, fmt=DEFAULT_LOG_FORMAT, datefmt=DEF
 #------------------------------------------------------------------------------
 class SysLogFilter(logging.Filter):
     def __init__(self, level, name=''):
-        logging.Filter.__init__(self, name)
+        # logging.Filter.__init__(self, name)
+        super(SysLogFilter, self).__init__(name)
         self.logLevel = level
 
     def filter(self, record):
@@ -118,7 +168,6 @@ class SysLogFilter(logging.Filter):
 #   SysLog class
 #------------------------------------------------------------------------------
 class SysLog(logging.Logger):
-
 
     def debug(self, msg, *args, **kwargs):
         """
@@ -147,15 +196,17 @@ class SysLog(logging.Logger):
 
 
 # ----------------------------------------------------------------------------
+_default_filter    = SysLogFilter(DEFAULT_LOG_LEVEL)
+_default_formatter = logging.Formatter(DEFAULT_LOG_FORMAT, DEFAULT_TIME_FORMAT)
+_default_handler   = logging.StreamHandler(sys.stderr)
+
 logging.setLoggerClass(SysLog)
-logger = logging.getLogger()
-hdlr = logging.StreamHandler(sys.stderr)
-fmtr = logging.Formatter(DEFAULT_LOG_FORMAT, DEFAULT_TIME_FORMAT)
-hdlr.setFormatter(fmtr)
-logger.addHandler(hdlr)
-logger.setLevel(NONE)
-filt = SysLogFilter(ALL)
-logger.addFilter(filt)
+logger = logging.getLogger('kitty')
+# dispensable - logger.setLevel(NONE)
+logger.addFilter(_default_filter)
+
+_default_handler.setFormatter(_default_formatter)
+logger.addHandler(_default_handler)
 
 # -----------------------------------------------------------------------------
 #    test
