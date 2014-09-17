@@ -119,9 +119,12 @@ def init(filename, loglvl=DEFAULT_LOG_LEVEL, fmt=DEFAULT_LOG_FORMAT, datefmt=DEF
     """
     args:
     filename
-    loglvl    available log level   default ALL
-    fmt       log format string     default %(levelname)-9s: %(asctime)s : [%(name)s] [%(thread)d] [%(filename)s:%(lineno)d:%(funcName)s] %(message)s
-    datefmt   date format string    default %m-%d %H:%M:%S
+    loglvl      available log level
+                default ALL
+    fmt         log format string
+                default %(levelname)-9s: %(asctime)s : [%(name)s] [%(thread)d] [%(filename)s:%(lineno)d:%(funcName)s] %(message)s
+    datefmt     date format string
+                default %m-%d %H:%M:%S
     """
     global _HAS_INIT
     global logger
@@ -131,33 +134,36 @@ def init(filename, loglvl=DEFAULT_LOG_LEVEL, fmt=DEFAULT_LOG_FORMAT, datefmt=DEF
         return
 
 
-    # thread safe
-    # no need to call hdlr.createLock(), it is called in hdlr.__init__()
+
     
-    # logging.setLoggerClass(SysLog)
     logger = logging.getLogger('kitty.log')
-    # dispensable - logger.setLevel(NONE)
-    filt = SysLogFilter(loglvl)
+
+    # Avoid this
+    # setLevel(NONE) or do nothing will lead to loop through this logger and
+    # its parents in the logger hierarchy, looking for a non-zero logging level
+    logger.setLevel(DEBUG)
+
+    filt = SysFilter(loglvl)
     logger.addFilter(filt)
 
+    # handlers
+    # no need to call hdlr.createLock(), it is called in hdlr.__init__()
     hdlr = logging.handlers.TimedRotatingFileHandler(filename, when='d')
     fmtr = logging.Formatter(fmt, datefmt)
 
     hdlr.setFormatter(fmtr)
     logger.addHandler(hdlr)
 
-
-
     _HAS_INIT = True
 
 
 #------------------------------------------------------------------------------
-#   SysLog filter
+#   SysLogger filter
 #------------------------------------------------------------------------------
-class SysLogFilter(logging.Filter):
+class SysFilter(logging.Filter):
     def __init__(self, level, name=''):
-        # logging.Filter.__init__(self, name)
-        super(SysLogFilter, self).__init__(name)
+        # be careful for super()
+        super(SysFilter, self).__init__(name)
         self.logLevel = level
 
     def filter(self, record):
@@ -165,9 +171,9 @@ class SysLogFilter(logging.Filter):
             return True
         return False
 #------------------------------------------------------------------------------
-#   SysLog class
+#   SysLogger class
 #------------------------------------------------------------------------------
-class SysLog(logging.Logger):
+class SysLogger(logging.Logger):
 
     def debug(self, msg, *args, **kwargs):
         """
@@ -196,13 +202,13 @@ class SysLog(logging.Logger):
 
 
 # ----------------------------------------------------------------------------
-_default_filter    = SysLogFilter(DEFAULT_LOG_LEVEL)
+_default_filter    = SysFilter(DEFAULT_LOG_LEVEL)
 _default_formatter = logging.Formatter(DEFAULT_LOG_FORMAT, DEFAULT_TIME_FORMAT)
 _default_handler   = logging.StreamHandler(sys.stderr)
 
-logging.setLoggerClass(SysLog)
+logging.setLoggerClass(SysLogger)
 logger = logging.getLogger('kitty')
-# dispensable - logger.setLevel(NONE)
+logger.setLevel(DEBUG)
 logger.addFilter(_default_filter)
 
 _default_handler.setFormatter(_default_formatter)
