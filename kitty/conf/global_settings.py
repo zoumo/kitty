@@ -2,11 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import os
+import kitty.utils.log
 
 APP_NAME = "kitty"
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 ROOT_PATH = BASE_PATH
 LOG_PATH = ROOT_PATH + "/log"
+
+LOG_LEVEL = kitty.utils.log.ALL
 
 DEBUG = False
 

@@ -246,7 +246,7 @@ root = getLogger()
 #    test
 # -----------------------------------------------------------------------------
 def test():
-    init('test.log')
+    logger = getLogger()
 
     logger.debug("this is debug")
     logger.notice("this is notice")
