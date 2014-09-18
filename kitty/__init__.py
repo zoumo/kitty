@@ -21,7 +21,7 @@ def setup(settings_module=""):
     if not os.path.isdir(settings.LOG_PATH):
         os.mkdir(settings.LOG_PATH)
 
-    log.init(log_file)
+    log.configure(log_file)
 
 #---------------------------------------------------------------------------
 #   conf
