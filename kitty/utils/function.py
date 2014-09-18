@@ -8,11 +8,9 @@ import os, sys, time
 # sign.so
 # from kitty.utils import sign
 
-# __all__ = ['empty']
+
 
 __author__  = "Jim Zhang"
-__status__  = "production"
-# Note: the attributes below are no longer maintained.
 __version__ = "0.1.0.0"
 __date__    = "24/08/2014"
 

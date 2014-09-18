@@ -14,14 +14,16 @@ def setup(settings_module=""):
 
     from kitty.utils import log
     from kitty.conf import KITTY_SETTINGS_MODULE, settings
+    
     os.environ.setdefault(KITTY_SETTINGS_MODULE, settings_module)
 
-
     log_file = settings.LOG_PATH + "/" + settings.APP_NAME + ".log"
+
     if not os.path.isdir(settings.LOG_PATH):
         os.mkdir(settings.LOG_PATH)
 
-    log.configure(log_file)
+    #init logger
+    log.getLogger(name=settings.APP_NAME, filename=log_file)
 
 #---------------------------------------------------------------------------
 #   conf

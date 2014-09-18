@@ -20,7 +20,7 @@ def opt_parse():
     return args
 
 if __name__ == "__main__" :
-    print opt_parse()
+    # print opt_parse()
 
     # logger.debug("this is debug")
     # logger.notice("this is notice")
@@ -32,15 +32,19 @@ if __name__ == "__main__" :
     # print empty({})
 
     
-    # kitty.setup("kitty.test.setting")
-    kitty.setup()
+    kitty.setup("kitty.test.setting")
+    # kitty.setup()
     
     from kitty.conf import settings
-    from kitty.utils.log import logger
+    from kitty.utils.log import getLogger
     from kitty.utils.function import empty
+    from kitty.utils.log import root
+    print "app name ",  settings.APP_NAME
 
-    print logger.parent.filters[0].name
-    print settings.SETTINGS_MODULE
+    logger = getLogger(settings.APP_NAME)
+    print "logger name ", logger.name
+    print "logger parent name ", logger.parent.name
+    # print settings.SETTINGS_MODULE
     # print dir(settings)
     print empty([])
     print empty("123")

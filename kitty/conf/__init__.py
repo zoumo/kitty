@@ -15,7 +15,7 @@ from kitty.conf import global_settings
 from kitty.core.exceptions import ImproperlyConfigured
 from kitty.utils.functional import LazyObject, empty
 from kitty.utils import six
-from kitty.utils.log import logger
+from kitty.utils.log import root as logger
 
 
 KITTY_SETTINGS_MODULE = "KITTY_SETTINGS_MODULE"
@@ -35,7 +35,6 @@ class LazySettings(LazyObject):
         previously configured the settings manually.
         """
         settings_module = os.environ.get(KITTY_SETTINGS_MODULE)
-        print name
         if not settings_module:
             desc = ("setting %s" % name) if name else "settings"
             # raise ImproperlyConfigured(
@@ -45,7 +44,7 @@ class LazySettings(LazyObject):
             #     % (desc, KITTY_SETTINGS_MODULE))
             logger.warning("Requested [%s], but settings are not configured. use default settings [%s]", desc, DEFAULT_SETTINGS_MODULE)
         else:
-            logger.warning("lazy init settings module [%s]", settings_module)
+            logger.notice("lazy init settings module [%s]", settings_module)
 
         self._wrapped = Settings(settings_module)
 

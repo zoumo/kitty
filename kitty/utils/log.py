@@ -3,20 +3,24 @@
 """
 This utils is independent, you can use it with out anyother module
 
-To use, simply 'import kitty.utils.log' and kitty.utils.log.configure(filename)
+To use, simply 'import kitty.utils.log' and kitty.utils.log.getLogger(name)
 based on logging
 """
 
 import os, sys, time
 import logging, logging.config, logging.handlers
 
-# __all__ = ['NONE', 'DEBUG', 'TRACE', 'NOTICE', 'WARNING', 'FATAL', 'ALL',
-#            'DEFAULT_LOG_FORMAT', 'DEFAULT_TIME_FORMAT', 'DEFAULT_LOG_LEVEL'
-#            'init', 'logger']
+try:
+    import thread
+    import threading
+except ImportError:
+    thread = None
 
+#---------------------------------------------------------------------------
+#   personal info
+#---------------------------------------------------------------------------
 
 __author__  = "Jim Zhang"
-# Note: the attributes below are no longer maintained.
 __version__ = "0.1.1.0"
 __date__    = "18/09/2014"
 
@@ -53,11 +57,33 @@ _NAME_LEVEL_MAP = {
 for level in _LEVEL_NAME_MAP:
     logging.addLevelName(level, _LEVEL_NAME_MAP[level])
 
-_HAS_INIT = False
 
+#---------------------------------------------------------------------------
+#   thread safe
+#---------------------------------------------------------------------------
+
+if thread:
+    _lock = threading.RLock()
+else:
+    _lock = None
+def _acquireLock():
+    """
+    Acquire the module-level lock for serializing access to shared data.
+
+    This should be released with _releaseLock().
+    """
+    if _lock:
+        _lock.acquire()
+
+def _releaseLock():
+    """
+    Release the module-level lock acquired by calling _acquireLock().
+    """
+    if _lock:
+        _lock.release()
 
 #------------------------------------------------------------------------------
-#   SysLogger filter
+#   new filter class
 #------------------------------------------------------------------------------
 class SysFilter(logging.Filter):
     def __init__(self, level, name=''):
@@ -70,7 +96,7 @@ class SysFilter(logging.Filter):
             return True
         return False
 #------------------------------------------------------------------------------
-#   SysLogger class
+#   new Logger class
 #------------------------------------------------------------------------------
 class SysLogger(logging.Logger):
 
@@ -100,6 +126,7 @@ class SysLogger(logging.Logger):
 #------------------------------------------------------------------------------
 #   default conf
 #------------------------------------------------------------------------------
+
 # DEFAULT_LOGGING = {
 #     'version': 1,
 #     'disable_existing_loggers': True,
@@ -139,61 +166,82 @@ DEFAULT_LOG_LEVEL   = ALL # NOTICE | WARNING | FATAL
 default_formatter   = logging.Formatter(DEFAULT_LOG_FORMAT, DEFAULT_TIME_FORMAT)
 default_filter      = SysFilter(DEFAULT_LOG_LEVEL, 'default_filter')
 
-# set logger class
+# set a new logger class
 logging.setLoggerClass(SysLogger)
 
-# default logger
-logger = logging.getLogger('kitty')
+# # default logger
+# root = logging.getLogger('kitty')
 
-# Avoid follows
-# setLevel(NONE) or do nothing will lead to loop through this logger and
-# its parents in the logger hierarchy, looking for a non-zero logging level
-logger.setLevel(DEBUG)
+# # Avoid follows
+# # setLevel(NONE) or do nothing will lead to loop through this logger and
+# # its parents in the logger hierarchy, looking for a non-zero logging level
+# root.setLevel(DEBUG)
 
-logger.addFilter(default_filter)
-hdlr = logging.StreamHandler()
-hdlr.setFormatter(default_formatter)
-logger.addHandler(hdlr)
+# root.addFilter(default_filter)
+# hdlr = logging.StreamHandler()
+# hdlr.setFormatter(default_formatter)
+# root.addHandler(hdlr)
+
+_loggers = {}
 
 
 #------------------------------------------------------------------------------
-#   init function
+#   class level function
 #------------------------------------------------------------------------------
-def configure(filename, loglvl=DEFAULT_LOG_LEVEL):
+
+ROOT_NAME = 'kitty'
+
+def getLogger(name='kitty', **kwargs):
     """
     args:
-    filename
+    name        logger name
     loglvl      available log level like (DEBUG | NOTICE | FATAL)
                 default ALL
     """
-    global _HAS_INIT
-    global logger
+    if name != 'kitty' and not name.startswith('kitty.'):
+        name = 'kitty.' + name
 
-    if _HAS_INIT:
-        print "logger has configured"
-        return
+    if name in _loggers:
+        return _loggers[name]
 
-    logger = logging.getLogger('kitty.log')
+    _acquireLock()
+    try:
+        logger = logging.getLogger(name)
 
-    # Avoid follows
-    # setLevel(NONE) or do nothing will lead to loop through this logger and
-    # its parents in the logger hierarchy, looking for a non-zero logging level
-    logger.setLevel(DEBUG)
+        level = kwargs.get("level")
+        
 
-    # filter
-    if loglvl == DEFAULT_LOG_LEVEL:
-        filt = default_filter
-    else:
-        filt = SysFilter(loglvl)
-    logger.addFilter(filt)
+        if not level or level == DEFAULT_LOG_LEVEL:
+            filt = default_filter
+        else:
+            filt = SysFilter(level)
+        logger.addFilter(filt)
 
-    # handlers
-    # no need to call hdlr.createLock(), it is called in hdlr.__init__()
-    hdlr = logging.handlers.TimedRotatingFileHandler(filename, when='d')
-    hdlr.setFormatter(default_formatter)
-    logger.addHandler(hdlr)
+        # Avoid follows
+        # setLevel(NONE) or do nothing will lead to loop through this logger and
+        # its parents in the logger hierarchy, looking for a non-zero logging level
+        logger.setLevel(DEBUG)
 
-    _HAS_INIT = True
+        # handlers
+        # no need to call hdlr.createLock(), it is called in hdlr.__init__()
+        filename = kwargs.get("filename")
+        if filename:
+            hdlr = logging.handlers.TimedRotatingFileHandler(filename, when='d')
+        else:
+            hdlr = logging.StreamHandler()
+
+        hdlr.setFormatter(default_formatter)
+        logger.addHandler(hdlr)
+
+        _loggers[name] = logger
+
+    finally:
+        _releaseLock()
+
+    return logger
+
+root = getLogger()
+
 # -----------------------------------------------------------------------------
 #    test
 # -----------------------------------------------------------------------------
