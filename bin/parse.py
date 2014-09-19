@@ -1,10 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys, os, re
-
+import argparse
 from os.path import dirname, realpath
-sys.path.append(dirname(dirname(realpath(__file__))))
-from conf import *
+
 #================================ head end ====================================
 
 def main(file_path, tokenN):

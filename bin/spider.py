@@ -1,11 +1,20 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys, os, time, json, urllib, urllib2, threading
-
+import argparse
 from os.path import dirname, realpath
-sys.path.append(dirname(dirname(realpath(__file__))))
-from conf import *
+
+try:
+    # install
+    import kitty
+except ImportError, e:
+    # local
+    sys.path.append(dirname(dirname(realpath(__file__))))
+    import kitty
+
 #================================ head end ====================================
+
+# logger = root
 
 class ImgPress(threading.Thread):
 
@@ -16,7 +25,7 @@ class ImgPress(threading.Thread):
         self.queryList = query_list
 
     def run(self):
-        pylogger.notice("thread: %d start", self.id)
+        logger.notice("thread: %d start", self.id)
         start_time = time.time()
         etime = time.time() + 1
         for query in self.queryList:
@@ -25,10 +34,10 @@ class ImgPress(threading.Thread):
             try:
                 ret = urllib2.urlopen(url, timeout=10)
             except urllib2.HTTPError, e :
-                pylogger.warning("HTTPError code: %d", e.code)
+                logger.warning("HTTPError code: %d", e.code)
                 
             except urllib2.URLError, e :
-                pylogger.warning("URLError reason: %s", e.reason)
+                logger.warning("URLError reason: %s", e.reason)
 
             ntime = time.time()
             if ntime < etime :
@@ -36,7 +45,7 @@ class ImgPress(threading.Thread):
             etime = etime + 1
         end_time = time.time()
 
-        pylogger.notice("thread: %d finished use[%f]", self.id, end_time - start_time)
+        logger.notice("thread: %d finished use[%f]", self.id, end_time - start_time)
 
     def stop(self):
         self.thread_stop = True
@@ -70,10 +79,10 @@ def getImageJsonStr(site, query, pn) :
     try:
         ret = urllib2.urlopen(url, timeout=10).read()
     except urllib2.HTTPError, e :
-        pylogger.warning("HTTPError code: %d", e.code)
+        logger.warning("HTTPError code: %d", e.code)
         return False
     except urllib2.URLError, e :
-        pylogger.warning("URLError reason: %s", e.reason)
+        logger.warning("URLError reason: %s", e.reason)
         return False
     return ret
 
@@ -104,8 +113,9 @@ def parseJson(str, pn, file_out) :
     return True
 
 
-
+# =============================================================================
 def main():
+
     file_in  = open("./query", 'r')
     file_out = open("./out", 'w')
 
@@ -133,10 +143,19 @@ def opt_parse():
     return args
 
 if __name__ == "__main__" :
+    global logger
+
     args = opt_parse()
-    # print args
+    
+    app_name = 'spider'
+    kitty.setup(app_name, "bin.settings")
 
-    doPress('10.46.128.15:8090', args.file, args.velocity)
+    from kitty.utils.log import getLogger
 
+    logger = getLogger(app_name)
+
+    logger.notice('start')
+    # doPress('10.46.128.15:8090', args.file, args.velocity)
+    
 
 

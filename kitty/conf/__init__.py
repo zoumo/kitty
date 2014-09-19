@@ -44,7 +44,8 @@ class LazySettings(LazyObject):
             #     % (desc, KITTY_SETTINGS_MODULE))
             logger.warning("Requested [%s], but settings are not configured. use default settings [%s]", desc, DEFAULT_SETTINGS_MODULE)
         else:
-            logger.notice("lazy init settings module [%s]", settings_module)
+            desc = ("setting %s" % name) if name else "settings"
+            logger.notice("requested [%s] is lazy initialized  in settings module [%s]", desc, settings_module)
 
         self._wrapped = Settings(settings_module)
 

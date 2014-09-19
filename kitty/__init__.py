@@ -10,20 +10,23 @@ def get_version(*args, **kwargs):
     from kitty.utils.version import get_version
     return get_version(*args, **kwargs)
 
-def setup(settings_module=""):
+def setup(app_name='kitty', settings_module=""):
 
     from kitty.utils import log
     from kitty.conf import KITTY_SETTINGS_MODULE, settings
 
     os.environ.setdefault(KITTY_SETTINGS_MODULE, settings_module)
 
-    log_file = settings.LOG_PATH + "/" + settings.APP_NAME + ".log"
+    if not app_name:
+        app_name = 'kitty'
+
+    log_file = settings.LOG_PATH + "/" + app_name + ".log"
 
     if not os.path.isdir(settings.LOG_PATH):
         os.mkdir(settings.LOG_PATH)
 
     #init logger
-    log.getLogger(name=settings.APP_NAME, filename=log_file, level=settings.LOG_LEVEL)
+    log.getLogger(name=app_name, filename=log_file, level=settings.LOG_LEVEL)
 
 #---------------------------------------------------------------------------
 #   conf

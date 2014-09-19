@@ -31,20 +31,18 @@ if __name__ == "__main__" :
     # print empty(logger)
     # print empty({})
 
-    
-    kitty.setup("kitty.test.setting")
+    app_name = 'test'
+    kitty.setup(app_name, "kitty.test.settings")
     # kitty.setup()
     
     from kitty.conf import settings
     from kitty.utils.log import getLogger
     from kitty.utils.function import empty
     from kitty.utils.log import root
-    print "app name ",  settings.APP_NAME
 
-    logger = getLogger(settings.APP_NAME)
+    logger = getLogger(app_name)
+
+    print "app name", app_name
     print "logger name ", logger.name
     print "logger parent name ", logger.parent.name
-    # print settings.SETTINGS_MODULE
-    # print dir(settings)
-    print empty([])
-    print empty("123")
+

@@ -3,7 +3,6 @@
 
 import os
 
-APP_NAME = "spider"
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 ROOT_PATH = BASE_PATH
 LOG_PATH = ROOT_PATH + "/log"

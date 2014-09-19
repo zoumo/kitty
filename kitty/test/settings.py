@@ -2,14 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import os
-import kitty.utils.log
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 ROOT_PATH = BASE_PATH
 LOG_PATH = ROOT_PATH + "/log"
-
-LOG_LEVEL = kitty.utils.log.ALL
-
 DEBUG = False
 
 # Default content type and charset to use for all HttpResponse objects, if a
