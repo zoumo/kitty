@@ -7,7 +7,8 @@ Values will be read from the module specified by the DJANGO_SETTINGS_MODULE envi
 variable, and then from kitty.conf.global_settings; see the global settings file for
 a list of all possible variables.
 """
-import os, sys
+import os
+import sys
 
 import importlib
 
@@ -42,10 +43,14 @@ class LazySettings(LazyObject):
             #     "You must either define the environment variable %s "
             #     "or call settings.configure() before accessing settings."
             #     % (desc, KITTY_SETTINGS_MODULE))
-            logger.warning("Requested [%s], but settings are not configured. use default settings [%s]", desc, DEFAULT_SETTINGS_MODULE)
+            logger.warning(
+                "Requested [%s], but settings are not configured. use default settings [%s]",
+                desc, DEFAULT_SETTINGS_MODULE)
         else:
             desc = ("setting %s" % name) if name else "settings"
-            logger.notice("requested [%s] is lazy initialized  in settings module [%s]", desc, settings_module)
+            logger.notice(
+                "requested [%s] is lazy initialized  in settings module [%s]",
+                desc, settings_module)
 
         self._wrapped = Settings(settings_module)
 
@@ -105,8 +110,8 @@ class Settings(BaseSettings):
                 mod = importlib.import_module(self.SETTINGS_MODULE)
             except ImportError as e:
                 raise ImportError(
-                    "Could not import settings [%s] (Is it on sys.path? Is there an "
-                    "import error in the settings file?): %s"
+                    "Could not import settings [%s] (Is it on sys.path?"
+                    "Is there an import error in the settings file?): %s"
                     % (self.SETTINGS_MODULE, e)
                 )
 
