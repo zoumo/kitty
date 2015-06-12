@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Settings and configuration for Django.
+Settings and configuration.
 
-Values will be read from the module specified by the DJANGO_SETTINGS_MODULE environment
+Values will be read from the module specified by the KITTY_SETTINGS_MODULE environment
 variable, and then from kitty.conf.global_settings; see the global settings file for
 a list of all possible variables.
 """
@@ -49,7 +49,7 @@ class LazySettings(LazyObject):
         else:
             desc = ("setting %s" % name) if name else "settings"
             logger.notice(
-                "requested [%s] is lazy initialized  in settings module [%s]",
+                "requested [%s] is lazy initialized in settings module [%s]",
                 desc, settings_module)
 
         self._wrapped = Settings(settings_module)
@@ -93,7 +93,13 @@ class BaseSettings(object):
         object.__setattr__(self, name, value)
 
 class Settings(BaseSettings):
+    '''
+        It load module global_settings firstly, but only for ALL_CAPS settings
+        then if setting_module is available (like kitty.test.settings),
+        the homonymic settings in global_settings will be overwrote
 
+        You can use is_overridden('BASE_PATH') to look up
+    '''
     def __init__(self, settings_module=None):
         # update this dict from global settings (but only for ALL_CAPS settings)
         for setting in dir(global_settings):
@@ -166,10 +172,7 @@ class UserSettingsHolder(BaseSettings):
 
 
 settings = LazySettings()
-#---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
 #   test
-#---------------------------------------------------------------------------
-
-
-if __name__ == "__main__" :
-    pass
+# ---------------------------------------------------------------------------
+# kitty.test.test.conf

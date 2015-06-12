@@ -4,7 +4,11 @@
 import os
 import kitty.utils.log
 
-BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+# realpath will eliminate any symbolic links encountered in the path
+# abspath only return a normalized absolutized version of the pathname path
+# BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 ROOT_PATH = BASE_PATH
 LOG_PATH = ROOT_PATH + "/log"
 

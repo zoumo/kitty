@@ -1,10 +1,16 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 """
+based on logging
 This utils is independent, you can use it with out anyother module
 
-To use, simply 'import kitty.utils.log' and kitty.utils.log.getLogger(name)
-based on logging
+[usage]
+import kitty.utils.log
+kitty.utils.log.getLogger(name)
+
+notice:
+if use name like kitty.test, the log will output to it's father kitty[default console]
+
 """
 
 import os
@@ -20,25 +26,25 @@ try:
 except ImportError:
     thread = None
 
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 #   personal info
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 __author__  = "Jim Zhang"
 __version__ = "0.1.1.0"
 __date__    = "18/09/2014"
 
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 #   Miscellaneous module data
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
-NONE    = 0x00; #0000 0000
-DEBUG   = 0x01; #0000 0001
-TRACE   = 0x02; #0000 0010
-NOTICE  = 0x04; #0000 0100
-WARNING = 0x08; #0000 1000
-FATAL   = 0x10; #0001 0000
-ALL     = 0xFF; #1111 1111
+NONE    = 0x00 #0000 0000
+DEBUG   = 0x01 #0000 0001
+TRACE   = 0x02 #0000 0010
+NOTICE  = 0x04 #0000 0100
+WARNING = 0x08 #0000 1000
+FATAL   = 0x10 #0001 0000
+ALL     = 0xFF #1111 1111
 
 _LEVEL_NAME_MAP = {
     NONE      : 'NONE',
@@ -61,10 +67,11 @@ _NAME_LEVEL_MAP = {
 for level in _LEVEL_NAME_MAP:
     logging.addLevelName(level, _LEVEL_NAME_MAP[level])
 
+ROOT_LOGGER_NAME = 'kitty'
 
-#----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 #   thread safe
-#----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 if thread:
     _lock = threading.RLock()
@@ -86,9 +93,9 @@ def _releaseLock():
     if _lock:
         _lock.release()
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 #   new filter class
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 class SysFilter(logging.Filter):
     def __init__(self, level, name=''):
         # be careful for super()
@@ -99,9 +106,9 @@ class SysFilter(logging.Filter):
         if record.levelno & self.logLevel :
             return True
         return False
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 #   new Logger class
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 class SysLogger(logging.Logger):
 
     def debug(self, msg, *args, **kwargs):
@@ -121,15 +128,15 @@ class SysLogger(logging.Logger):
 
     def trace(self, msg, *args, **kwargs):
         apply(self._log, (TRACE, msg, args), kwargs)
-    
+
     def warning(self, msg, *args, **kwargs):
         apply(self._log, (WARNING, msg, args), kwargs)
 
     def fatal(self, msg, *args, **kwargs):
         apply(self._log, (WARNING, msg, args), kwargs)
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 #   default conf
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 # DEFAULT_LOGGING = {
 #     'version': 1,
@@ -188,22 +195,18 @@ logging.setLoggerClass(SysLogger)
 
 _loggers = {}
 
-
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 #   class level function
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
-ROOT_NAME = 'kitty'
-
-def getLogger(name='kitty', **kwargs):
+def getLogger(name=ROOT_LOGGER_NAME, **kwargs):
     """
     args:
     name        logger name
     loglvl      available log level like (DEBUG | NOTICE | FATAL)
                 default ALL
+    filename    ./log/test.log
     """
-    if name != 'kitty' and not name.startswith('kitty.'):
-        name = 'kitty.' + name
 
     if name in _loggers:
         return _loggers[name]
@@ -213,12 +216,12 @@ def getLogger(name='kitty', **kwargs):
         logger = logging.getLogger(name)
 
         level = kwargs.get("level")
-        
 
         if not level or level == DEFAULT_LOG_LEVEL:
             filt = default_filter
         else:
             filt = SysFilter(level)
+
         logger.addFilter(filt)
 
         # Avoid follows
@@ -250,13 +253,30 @@ root = getLogger()
 #    test
 # -----------------------------------------------------------------------------
 def test():
-    logger = getLogger()
 
+    # all function test
+    logger = getLogger()
     logger.debug("this is debug")
     logger.notice("this is notice")
     logger.trace("this is trace")
     logger.warning("this is warning")
     logger.fatal("this is fatal")
+
+    # namespace test
+    logger = getLogger('other')
+    logger.debug("this is debug")
+
+    # this will print twice
+    logger = getLogger('kitty.other')
+    logger.debug("this is debug")
+
+    # file handle test
+    file_logger = getLogger('file', filename='./file.log')
+    file_logger.debug("this is debug")
+    file_logger.notice("this is notice")
+    file_logger.trace("this is trace")
+    file_logger.warning("this is warning")
+    file_logger.fatal("this is fatal")
 
 if __name__ == '__main__':
     test()
