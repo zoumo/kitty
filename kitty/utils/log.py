@@ -133,7 +133,7 @@ class SysLogger(logging.Logger):
         apply(self._log, (WARNING, msg, args), kwargs)
 
     def fatal(self, msg, *args, **kwargs):
-        apply(self._log, (WARNING, msg, args), kwargs)
+        apply(self._log, (FATAL, msg, args), kwargs)
 # -----------------------------------------------------------------------------
 #   default conf
 # -----------------------------------------------------------------------------
@@ -169,9 +169,9 @@ class SysLogger(logging.Logger):
 #     }
 # }
 
-DEFAULT_LOG_FORMAT  = ("%(levelname)-9s: %(asctime)s : [%(name)s] [%(thread)d]"
+DEFAULT_LOG_FORMAT  = ("%(levelname)s: [%(asctime)s] [%(name)s] [%(thread)d]"
                        " [%(filename)s:%(lineno)d:%(funcName)s] %(message)s")
-DEFAULT_TIME_FORMAT = "%m-%d %H:%M:%S"
+DEFAULT_TIME_FORMAT = "%y-%m-%d %H:%M:%S"
 DEFAULT_LOG_LEVEL   = ALL # NOTICE | WARNING | FATAL
 
 default_formatter   = logging.Formatter(DEFAULT_LOG_FORMAT, DEFAULT_TIME_FORMAT)
@@ -203,9 +203,11 @@ def getLogger(name=ROOT_LOGGER_NAME, **kwargs):
     """
     args:
     name        logger name
-    loglvl      available log level like (DEBUG | NOTICE | FATAL)
+    level       available log level like (DEBUG | NOTICE | FATAL)
                 default ALL
     filename    ./log/test.log
+    format      log string format
+    datefmt     date string format
     """
 
     if name in _loggers:
@@ -215,14 +217,23 @@ def getLogger(name=ROOT_LOGGER_NAME, **kwargs):
     try:
         logger = logging.getLogger(name)
 
-        level = kwargs.get("level")
-
-        if not level or level == DEFAULT_LOG_LEVEL:
+        # filter
+        level = kwargs.get("level", DEFAULT_LOG_LEVEL)
+        if level == DEFAULT_LOG_LEVEL:
             filt = default_filter
         else:
             filt = SysFilter(level)
 
         logger.addFilter(filt)
+
+        # formatter
+        fmt = kwargs.get("format", DEFAULT_LOG_FORMAT)
+        datefmt = kwargs.get("datefmt", DEFAULT_TIME_FORMAT)
+
+        if fmt == DEFAULT_LOG_FORMAT and datefmt == DEFAULT_TIME_FORMAT:
+            formatter = default_formatter
+        else:
+            formatter = logging.Formatter(fmt, datefmt)
 
         # Avoid follows
         # setLevel(NONE) or do nothing will lead to loop through this logger and
@@ -237,7 +248,7 @@ def getLogger(name=ROOT_LOGGER_NAME, **kwargs):
         else:
             hdlr = logging.StreamHandler()
 
-        hdlr.setFormatter(default_formatter)
+        hdlr.setFormatter(formatter)
         logger.addHandler(hdlr)
 
         _loggers[name] = logger
@@ -262,21 +273,43 @@ def test():
     logger.warning("this is warning")
     logger.fatal("this is fatal")
 
+
+
+    LOG_CONFIG = {
+        'file': {
+            'name' : 'file',
+            'filename' : './file.log',
+            'level' : NOTICE | WARNING | FATAL,
+        },
+        'other': {
+            'name' : 'other',
+            'level': DEBUG | WARNING,
+        },
+        'kitty.other': {
+            'name' : 'kitty.other',
+            'level': NOTICE | DEBUG,
+        },
+    }
+
     # namespace test
-    logger = getLogger('other')
+    logger = getLogger(**LOG_CONFIG['other'])
     logger.debug("this is debug")
+    logger.warning("this is warning")
 
     # this will print twice
-    logger = getLogger('kitty.other')
+    logger = getLogger(**LOG_CONFIG['kitty.other'])
     logger.debug("this is debug")
+    logger.fatal("this is fatal")
 
-    # file handle test
-    file_logger = getLogger('file', filename='./file.log')
+    file_logger = getLogger(**LOG_CONFIG['file'])
     file_logger.debug("this is debug")
     file_logger.notice("this is notice")
     file_logger.trace("this is trace")
     file_logger.warning("this is warning")
     file_logger.fatal("this is fatal")
+
+
+
 
 if __name__ == '__main__':
     test()

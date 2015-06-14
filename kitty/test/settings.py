@@ -9,7 +9,7 @@ import os
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ROOT_PATH = BASE_PATH
-LOG_PATH = ROOT_PATH + "/log"
+LOG_PATH = ROOT_PATH + "/test"
 TEST_CONF = "TEST"
 
 DEBUG = False
