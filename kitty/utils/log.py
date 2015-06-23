@@ -13,9 +13,9 @@ if use name like kitty.test, the log will output to it's father kitty[default co
 
 """
 
-import os
-import sys
-import time
+# import os
+# import sys
+# import time
 import logging
 import logging.config
 import logging.handlers
@@ -30,38 +30,38 @@ except ImportError:
 #   personal info
 # ----------------------------------------------------------------------------
 
-__author__  = "Jim Zhang"
+__author__ = "Jim Zhang"
 __version__ = "0.1.1.0"
-__date__    = "18/09/2014"
+__date__ = "18/09/2014"
 
 # ----------------------------------------------------------------------------
 #   Miscellaneous module data
 # ----------------------------------------------------------------------------
 
-NONE    = 0x00 #0000 0000
-DEBUG   = 0x01 #0000 0001
-TRACE   = 0x02 #0000 0010
-NOTICE  = 0x04 #0000 0100
-WARNING = 0x08 #0000 1000
-FATAL   = 0x10 #0001 0000
-ALL     = 0xFF #1111 1111
+NONE = 0x00  # 0000 0000
+DEBUG = 0x01  # 0000 0001
+TRACE = 0x02  # 0000 0010
+NOTICE = 0x04  # 0000 0100
+WARNING = 0x08  # 0000 1000
+FATAL = 0x10  # 0001 0000
+ALL = 0xFF  # 1111 1111
 
 _LEVEL_NAME_MAP = {
-    NONE      : 'NONE',
-    DEBUG     : 'DEBUG',
-    TRACE     : 'TRACE',
-    NOTICE    : 'NOTICE',
-    WARNING   : 'WARNING',
-    FATAL     : 'FATAL',
+    NONE: 'NONE',
+    DEBUG: 'DEBUG',
+    TRACE: 'TRACE',
+    NOTICE: 'NOTICE',
+    WARNING: 'WARNING',
+    FATAL: 'FATAL',
 }
 
 _NAME_LEVEL_MAP = {
-    'NONE'    : NONE,
-    'DEBUG'   : DEBUG,
-    'TRACE'   : TRACE,
-    'NOTICE'  : NOTICE,
-    'WARNING' : WARNING,
-    'FATAL'   : FATAL,
+    'NONE': NONE,
+    'DEBUG': DEBUG,
+    'TRACE': TRACE,
+    'NOTICE': NOTICE,
+    'WARNING': WARNING,
+    'FATAL': FATAL,
 }
 
 for level in _LEVEL_NAME_MAP:
@@ -77,6 +77,8 @@ if thread:
     _lock = threading.RLock()
 else:
     _lock = None
+
+
 def _acquireLock():
     """
     Acquire the module-level lock for serializing access to shared data.
@@ -85,6 +87,7 @@ def _acquireLock():
     """
     if _lock:
         _lock.acquire()
+
 
 def _releaseLock():
     """
@@ -96,19 +99,24 @@ def _releaseLock():
 # -----------------------------------------------------------------------------
 #   new filter class
 # -----------------------------------------------------------------------------
+
+
 class SysFilter(logging.Filter):
+
     def __init__(self, level, name=''):
         # be careful for super()
         super(SysFilter, self).__init__(name)
         self.logLevel = level
 
     def filter(self, record):
-        if record.levelno & self.logLevel :
+        if record.levelno & self.logLevel:
             return True
         return False
 # -----------------------------------------------------------------------------
 #   new Logger class
 # -----------------------------------------------------------------------------
+
+
 class SysLogger(logging.Logger):
 
     def debug(self, msg, *args, **kwargs):
@@ -169,13 +177,13 @@ class SysLogger(logging.Logger):
 #     }
 # }
 
-DEFAULT_LOG_FORMAT  = ("%(levelname)s: [%(asctime)s] [%(name)s] [%(thread)d]"
-                       " [%(filename)s:%(lineno)d:%(funcName)s] %(message)s")
+DEFAULT_LOG_FORMAT = ("%(levelname)s: [%(asctime)s] [%(name)s] [%(thread)d]"
+                      " [%(filename)s:%(lineno)d:%(funcName)s] %(message)s")
 DEFAULT_TIME_FORMAT = "%y-%m-%d %H:%M:%S"
-DEFAULT_LOG_LEVEL   = ALL # NOTICE | WARNING | FATAL
+DEFAULT_LOG_LEVEL = ALL  # NOTICE | WARNING | FATAL
 
-default_formatter   = logging.Formatter(DEFAULT_LOG_FORMAT, DEFAULT_TIME_FORMAT)
-default_filter      = SysFilter(DEFAULT_LOG_LEVEL, 'default_filter')
+default_formatter = logging.Formatter(DEFAULT_LOG_FORMAT, DEFAULT_TIME_FORMAT)
+default_filter = SysFilter(DEFAULT_LOG_LEVEL, 'default_filter')
 
 # set a new logger class
 logging.setLoggerClass(SysLogger)
@@ -198,6 +206,7 @@ _loggers = {}
 # -----------------------------------------------------------------------------
 #   class level function
 # -----------------------------------------------------------------------------
+
 
 def getLogger(name=ROOT_LOGGER_NAME, **kwargs):
     """
@@ -263,6 +272,8 @@ root = getLogger()
 # -----------------------------------------------------------------------------
 #    test
 # -----------------------------------------------------------------------------
+
+
 def test():
 
     # all function test
@@ -273,20 +284,18 @@ def test():
     logger.warning("this is warning")
     logger.fatal("this is fatal")
 
-
-
     LOG_CONFIG = {
         'file': {
-            'name' : 'file',
-            'filename' : './file.log',
-            'level' : NOTICE | WARNING | FATAL,
+            'name': 'file',
+            'filename': './file.log',
+            'level': NOTICE | WARNING | FATAL,
         },
         'other': {
-            'name' : 'other',
+            'name': 'other',
             'level': DEBUG | WARNING,
         },
         'kitty.other': {
-            'name' : 'kitty.other',
+            'name': 'kitty.other',
             'level': NOTICE | DEBUG,
         },
     }
@@ -307,8 +316,6 @@ def test():
     file_logger.trace("this is trace")
     file_logger.warning("this is warning")
     file_logger.fatal("this is fatal")
-
-
 
 
 if __name__ == '__main__':

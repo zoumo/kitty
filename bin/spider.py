@@ -1,6 +1,12 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys, os, time, json, urllib, urllib2, threading
+import sys
+import os
+import time
+import json
+import urllib
+import urllib2
+import threading
 import argparse
 from os.path import dirname, realpath
 
@@ -12,7 +18,7 @@ except ImportError, e:
     sys.path.append(dirname(dirname(realpath(__file__))))
     import kitty
 
-#================================ head end ====================================
+# ================================ head end ====================================
 
 # logger = root
 
@@ -35,7 +41,7 @@ except ImportError, e:
 #                 ret = urllib2.urlopen(url, timeout=10)
 #             except urllib2.HTTPError, e :
 #                 logger.warning("HTTPError code: %d", e.code)
-                
+
 #             except urllib2.URLError, e :
 #                 logger.warning("URLError reason: %s", e.reason)
 
@@ -73,45 +79,45 @@ except ImportError, e:
 #         sub_thread.start()
 
 
-
-def getImageJsonStr(site, query, pn) :
+def getImageJsonStr(site, query, pn):
     # url = "http://%s/i?tn=baiduimagejson&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1401980826979_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=gbk&oe=utf-8&word=%s&rn=30&pn=%d" % (site, urllib.quote(query) , pn)
 
     url = "http://%s/i?tn=baiduimagejson&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1419587565388_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&oe=utf-8&word=%s&pn=0&rn=30" % (site, urllib.quote(query))
-    
+
     try:
         ret = urllib2.urlopen(url, timeout=10).read()
-    except urllib2.HTTPError, e :
+    except urllib2.HTTPError, e:
         logger.warning("HTTPError code: %d", e.code)
         return False
-    except urllib2.URLError, e :
+    except urllib2.URLError, e:
         logger.warning("URLError reason: %s", e.reason)
         return False
     return ret
 
 
-def parseJson(str, query, pn, file_out) :
+def parseJson(str, query, pn, file_out):
 
     from kitty.utils.function import empty
 
     decodejson = json.loads(str)
 
-    if empty(decodejson) :
+    if empty(decodejson):
         return False
 
-    if not 'data' in decodejson:
+    if 'data' not in decodejson:
         return False
 
     if empty(decodejson['data']):
         return False
 
     length = len(decodejson['data'])
-    for i in xrange(0,length):
-        if empty(decodejson['data'][i]) :
-            break;
+    for i in xrange(0, length):
+        if empty(decodejson['data'][i]):
+            break
         objurl = decodejson['data'][i]['objURL']
         fromurl = decodejson['data'][i]['fromURL']
-        file_out.write("%s\t%d\t%s\t%s\n"%(query.decode('utf-8').encode('gb2312'), pn, objurl.encode('utf-8'), fromurl.encode('utf-8')))
+        file_out.write("%s\t%d\t%s\t%s\n" %
+                       (query.decode('utf-8').encode('gb2312'), pn, objurl.encode('utf-8'), fromurl.encode('utf-8')))
 
     return True
 
@@ -119,15 +125,15 @@ def parseJson(str, query, pn, file_out) :
 # =============================================================================
 def spider(site, file_in, file_out):
 
-    for line in file_in :
+    for line in file_in:
         query = line.strip()
         pn = 0
         json_str = getImageJsonStr(site, query, pn)
-        if not json_str :
+        if not json_str:
             print "getImageJsonStr error, query[%s]" % (query)
             continue
         # print json_str
-        if not parseJson(json_str, query, pn, file_out) :
+        if not parseJson(json_str, query, pn, file_out):
             print "parseJson error, query[%s]" % (query)
             continue
 
@@ -141,11 +147,11 @@ def opt_parse():
     args = parser.parse_args()
     return args
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     global logger
 
     args = opt_parse()
-    
+
     app_name = 'spider'
     kitty.setup(app_name, "bin.settings")
 
@@ -155,6 +161,3 @@ if __name__ == "__main__" :
 
     logger.notice('start')
     spider('tc-img-sweb0.tc.baidu.com:8090', args.file_in, args.file_out)
-    
-
-

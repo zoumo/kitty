@@ -11,22 +11,23 @@ import time
 # from kitty.utils import sign
 
 
-
-__author__  = "Jim Zhang"
+__author__ = "Jim Zhang"
 __version__ = "0.1.0.0"
-__date__    = "24/08/2014"
+__date__ = "24/08/2014"
 
 # ----------------------------------------------------------------------------
 #    function
 # ----------------------------------------------------------------------------
-def empty(obj) :
+
+
+def empty(obj):
     """
     if obj is False | 0 | "" | None | [] | () | {}
     return False
     """
-    if not obj :
+    if not obj:
         return True
-    else :
+    else:
         return False
 
 # def sign_fs64(text):
@@ -37,8 +38,6 @@ def empty(obj) :
 #     #return ((low << 32) + high)
 #     # return ((high << 32) + low)
 #     return (high, low)
-
-
 
 
 # def getTimeSuffix(split = False, kind = 'day'):
@@ -62,7 +61,3 @@ def test():
 
 if __name__ == '__main__':
     test()
-
-
-
-

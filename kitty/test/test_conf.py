@@ -1,16 +1,16 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys, argparse
+import sys
+import argparse
 from os.path import dirname, realpath
 
 try:
     # install
     import kitty
 except ImportError, e:
-    #local
+    # local
     sys.path.append(dirname(dirname(dirname(realpath(__file__)))))
     import kitty
-
 
 
 def opt_parse():
@@ -39,7 +39,6 @@ def test_conf():
     print "logger name ", logger.name
     print "logger parent name ", logger.parent.name
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     test_conf()
-
-
+()

@@ -3,13 +3,15 @@
 import os
 import sys
 
-__author__  = "Jim Zhang"
+__author__ = "Jim Zhang"
 VERSION = (1, 0, 0, 'alpha', 0)
+
 
 def get_version(*args, **kwargs):
     # Avoid circular import
     from kitty.utils.version import get_version
     return get_version(*args, **kwargs)
+
 
 def setup(app_name='kitty', settings_module=""):
 
@@ -26,17 +28,19 @@ def setup(app_name='kitty', settings_module=""):
     if not os.path.isdir(settings.LOG_PATH):
         os.mkdir(settings.LOG_PATH)
 
-    #init logger
+    # init logger
     log.getLogger(name=app_name, filename=log_file, level=settings.LOG_LEVEL)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 #   conf
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 __version__ = get_version(VERSION)
 
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 #   test
-#----------------------------------------------------------------------
+# ----------------------------------------------------------------------
+
+
 def opt_parse():
     # Command-line option and argument parsing library
     # https://docs.python.org/dev/library/argparse.html
@@ -50,5 +54,5 @@ def opt_parse():
     return args
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     args = opt_parse()

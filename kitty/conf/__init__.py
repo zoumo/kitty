@@ -8,21 +8,23 @@ variable, and then from kitty.conf.global_settings; see the global settings file
 a list of all possible variables.
 """
 import os
-import sys
+# import sys
 
 import importlib
 
 from kitty.conf import global_settings
 from kitty.core.exceptions import ImproperlyConfigured
 from kitty.utils.functional import LazyObject, empty
-from kitty.utils import six
+# from kitty.utils import six
 from kitty.utils.log import root as logger
 
 
 KITTY_SETTINGS_MODULE = "KITTY_SETTINGS_MODULE"
 DEFAULT_SETTINGS_MODULE = "kitty.conf.global_settings"
 
+
 class LazySettings(LazyObject):
+
     """
     A lazy proxy for either global settings or a custom settings object.
     The user can manually configure settings prior to using them. Otherwise,
@@ -79,7 +81,9 @@ class LazySettings(LazyObject):
         """
         return self._wrapped is not empty
 
+
 class BaseSettings(object):
+
     """
     this is the basic setting object
     it is used to check the format by __setattr__
@@ -92,7 +96,9 @@ class BaseSettings(object):
             raise ImproperlyConfigured("If set, %s must end with a slash" % name)
         object.__setattr__(self, name, value)
 
+
 class Settings(BaseSettings):
+
     '''
         It load module global_settings firstly, but only for ALL_CAPS settings
         then if setting_module is available (like kitty.test.settings),
@@ -100,6 +106,7 @@ class Settings(BaseSettings):
 
         You can use is_overridden('BASE_PATH') to look up
     '''
+
     def __init__(self, settings_module=None):
         # update this dict from global settings (but only for ALL_CAPS settings)
         for setting in dir(global_settings):
@@ -109,7 +116,7 @@ class Settings(BaseSettings):
         self._explicit_settings = set()
 
         # not follows -- None | "" | False
-        if settings_module :
+        if settings_module:
             # store the settings module in case someone later cares
             self.SETTINGS_MODULE = settings_module
             try:
@@ -127,11 +134,12 @@ class Settings(BaseSettings):
                     setattr(self, setting, setting_value)
                     self._explicit_settings.add(setting)
 
-
     def is_overridden(self, setting):
         return setting in self._explicit_settings
 
+
 class UserSettingsHolder(BaseSettings):
+
     """
     Holder for user configured settings.
     """
