@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import sys
 
 __author__ = "Jim Zhang"
 VERSION = (1, 0, 0, 'alpha', 0)
@@ -23,36 +22,18 @@ def setup(app_name='kitty', settings_module=""):
     if not app_name:
         app_name = 'kitty'
 
-    log_file = settings.LOG_PATH + "/" + app_name + ".log"
-
     if not os.path.isdir(settings.LOG_PATH):
         os.mkdir(settings.LOG_PATH)
 
-    # init logger
-    log.getLogger(name=app_name, filename=log_file, level=settings.LOG_LEVEL)
+    LOG_CONFIG = {
+        'name': app_name,
+        'filename': settings.LOG_PATH + "/" + app_name + ".log",
+        'level': settings.LOG_LEVEL
+    }
+
+    log.getLogger(**LOG_CONFIG)
 
 # ----------------------------------------------------------------------
 #   conf
 # ----------------------------------------------------------------------
 __version__ = get_version(VERSION)
-
-# ----------------------------------------------------------------------
-#   test
-# ----------------------------------------------------------------------
-
-
-def opt_parse():
-    # Command-line option and argument parsing library
-    # https://docs.python.org/dev/library/argparse.html
-    import argparse
-    parser = argparse.ArgumentParser(description='this is a spider')
-    parser.add_argument('file',
-                        help='query list file path')
-    parser.add_argument('-p', action='store', dest='velocity', type=int, default=20,
-                        help='request velocity(per second), default 20')
-    args = parser.parse_args()
-    return args
-
-
-if __name__ == "__main__":
-    args = opt_parse()

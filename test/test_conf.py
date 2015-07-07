@@ -1,23 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-import argparse
-from os.path import dirname, realpath
 
-try:
-    # install
-    import kitty
-except ImportError, e:
-    # local
-    sys.path.append(dirname(dirname(dirname(realpath(__file__)))))
-    import kitty
-
-
-def opt_parse():
-    parser = argparse.ArgumentParser(description='this is a test')
-
-    args = parser.parse_args()
-    return args
+import kitty
 
 
 def test_conf():
@@ -41,4 +25,3 @@ def test_conf():
 
 if __name__ == "__main__":
     test_conf()
-()
