@@ -140,10 +140,8 @@ def spider(site, file_in, file_out):
 
 def opt_parse():
     parser = argparse.ArgumentParser(description='this is a spider')
-    parser.add_argument('-i', action='store', dest='file_in', type=argparse.FileType('r'),
-                        help='query list file path')
-    parser.add_argument('-o', action='store', dest='file_out', type=argparse.FileType('w'),
-                        help='')
+    parser.add_argument('-i', action='store', dest='file_in', type=argparse.FileType('r'), help='query list file path')
+    parser.add_argument('-o', action='store', dest='file_out', type=argparse.FileType('w'), help='')
     args = parser.parse_args()
     return args
 

@@ -30,6 +30,7 @@ def empty(obj):
     else:
         return False
 
+
 # def sign_fs64(text):
 #     """
 #     计算文本的fs64签名

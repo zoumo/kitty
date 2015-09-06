@@ -177,8 +177,7 @@ class SysLogger(logging.Logger):
 #     }
 # }
 
-DEFAULT_LOG_FORMAT = ("%(levelname)s: [%(asctime)s] [%(name)s] [%(thread)d]"
-                      " [%(filename)s:%(lineno)d:%(funcName)s] %(message)s")
+DEFAULT_LOG_FORMAT = "%(levelname)s: [%(asctime)s] [%(process)d] [%(filename)s:%(lineno)d:%(funcName)s] %(message)s"
 DEFAULT_TIME_FORMAT = "%y-%m-%d %H:%M:%S"
 DEFAULT_LOG_LEVEL = ALL  # NOTICE | WARNING | FATAL
 
@@ -253,7 +252,8 @@ def getLogger(name=ROOT_LOGGER_NAME, **kwargs):
         # no need to call hdlr.createLock(), it is called in hdlr.__init__()
         filename = kwargs.get("filename")
         if filename:
-            hdlr = logging.handlers.TimedRotatingFileHandler(filename, when='d')
+            # hdlr = logging.handlers.TimedRotatingFileHandler(filename, when='d')
+            hdlr = logging.FileHandler(filename)
         else:
             hdlr = logging.StreamHandler()
 

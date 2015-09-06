@@ -1,10 +1,56 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+import copy
 import operator
+import time
+import sys
 
 from kitty.utils import six
+from kitty.utils.six import copyreg
+
+
+# This class provides the functionality we want. You only need to look at
+# this if you want to know how this works. It only needs to be defined
+# once, no need to muck around with its internals.
+# see http://code.activestate.com/recipes/410692-readable-switch-construction-without-lambdas-or-di/
+# Created by Brian Beck on Mon, 25 Apr 2005
+class switch(object):
+    def __init__(self, value):
+        self.value = value
+        self.fall = False
+
+    def __iter__(self):
+        """Return the match method once, then stop"""
+        yield self.match
+        raise StopIteration
+
+    def match(self, *args):
+        """Indicate whether or not to enter a case suite"""
+        if self.fall or not args:
+            return True
+        elif self.value in args: # changed for v1.5, see below
+            self.fall = True
+            return True
+        else:
+            return False
+
+
+def func_timer(func):
+    def timer(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print >> sys.stderr, "%s use %f time" % (func.__name__, end-start)
+        return result
+    return timer
+
+
+# ====================================================
+# copy from django
+# ====================================================
 
 empty = object()
+
 
 def new_method_proxy(func):
     def inner(self, *args):
